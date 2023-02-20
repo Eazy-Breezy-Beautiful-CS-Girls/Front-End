@@ -5,14 +5,12 @@
 pip install flask
 ```
 
-2. In Command line in the front_end folder run
-```powershell
-set FLASK_APP=main.py
-```
+3. Make sure you are in the main folder that was created when you cloned the github repo like:
+C:\Users\Jacob\cs projects\CS-451R-wholething\Front-End
 
-3. Then 
+2. Then 
 ```powershell
 flask run
 ```
 
-4. this will run a local server that will show a development version and just click the link that looks like an ip that gets generated
+3. this will run a local server that will show a development version and just click the link that looks like an ip that gets generated
