@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+# from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='sh its a secret'
@@ -15,9 +16,9 @@ def about():
 def causes():
     return render_template('causes.html')
 
-@app.route('/blog.html', methods=['GET','POST'])
-def blog():
-    return render_template('blog.html')
+@app.route('/login.html', methods=['GET','POST'])
+def login():
+    return render_template('login.html')
 
 @app.route('/contact.html', methods=['GET'])
 def contact():
