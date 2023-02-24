@@ -64,16 +64,16 @@
             
 
             <div class="site-logo">
-              <a href="index.html" class="text-white">Profile</a>
+              <a href="index.html" class="text-white"></a>
             </div>
 
 
             <nav class="site-navigation text-left ml-auto " role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li class="active"><a href="/" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link">About Us</a></li>
                 <li><a href="causes.html" class="nav-link">Our Causes</a></li>
-                <li class="active"><a href="login.html" class="nav-link">Profile</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
               </ul>
             </nav>
@@ -91,9 +91,10 @@
 
 
 
-    <div class="owl-carousel-wrapper">
+    <div>
 
-      <div class="bg-white h-100 p-4 shadow">
+      <div class="bg-white h-100 p-4 shadow m-l-auto m-r-auto m-w">
+
         <h3 class="mb-4 text-cursive">Login</h3>
         <form action="#">
           <div class="form-group">
@@ -110,11 +111,6 @@
           </div>
         </form>
       </div>
-
-      <div class="box-92819">
-        <h1 class="text-white mb-3">User Profile</h1>
-        <p class="lead text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt ab doloremque a quia laboriosam suscipit, iure illum perspiciatis!</p>
-      </div>
       
     </div>
     
@@ -124,18 +120,18 @@
 
     </div>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.animateNumber.min.js"></script>
-    <script src="js/jquery.fancybox.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/aos.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.animateNumber.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.fancybox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/aos.js') }}"></script>
 
-    <script src="js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
   </body>
 
