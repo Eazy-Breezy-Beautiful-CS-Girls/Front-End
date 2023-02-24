@@ -593,7 +593,7 @@ h1, h2, h3, h4, h5,
             display: block; }
             .site-navbar .site-navigation .site-menu .has-children .dropdown > li > a:hover {
               background: #f8f9fa;
-              color: #f3b02e; }
+              color: #6c757d; }
           .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > a:before {
             content: "\e315";
             right: 20px; }
@@ -602,7 +602,7 @@ h1, h2, h3, h4, h5,
             top: 0; }
           .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children:hover > a, .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children:active > a, .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children:focus > a {
             background: #f8f9fa;
-            color: #f3b02e; }
+            color: #6c757d; }
       .site-navbar .site-navigation .site-menu .has-children:hover > a, .site-navbar .site-navigation .site-menu .has-children:focus > a, .site-navbar .site-navigation .site-menu .has-children:active > a {
         color: #75c8ae; }
       .site-navbar .site-navigation .site-menu .has-children:hover, .site-navbar .site-navigation .site-menu .has-children:focus, .site-navbar .site-navigation .site-menu .has-children:active {
@@ -654,7 +654,7 @@ h1, h2, h3, h4, h5,
         -o-transition: .3s all ease;
         transition: .3s all ease; }
         .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close span:hover {
-          color: #f3b02e; }
+          color: #6c757d; }
     .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo {
       float: left;
       margin-top: 10px;
