@@ -1,8 +1,10 @@
 from flask import Flask, render_template
-# from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SECRET_KEY']='sh its a secret'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:ezbreezy@database-2.cjv1pfdwijy3.us-east-2.rds.amazonaws.com:3306/database-2'
+db = SQLAlchemy(app)
 
 @app.route('/', methods=['GET'])
 def index():
