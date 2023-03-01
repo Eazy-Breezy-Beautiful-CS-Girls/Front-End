@@ -29,3 +29,7 @@ def contact():
 @app.route('/single.html', methods=['GET'])
 def single():
     return render_template('single.html')
+
+@app.route('/form.html', methods=['GET'])
+def single():
+    return render_template('form.html')
