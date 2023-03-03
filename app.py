@@ -31,5 +31,5 @@ def single():
     return render_template('single.html')
 
 @app.route('/form.html', methods=['GET'])
-def single():
+def form():
     return render_template('form.html')
