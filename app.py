@@ -41,3 +41,7 @@ def single():
 @app.route('/form.html', methods=['GET'])
 def form():
     return render_template('form.html')
+
+@app.route('/Sign-up.html', methods=['GET'])
+def Signup():
+    return render_template('Sign-up.html')
