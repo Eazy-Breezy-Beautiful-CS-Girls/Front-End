@@ -1185,7 +1185,8 @@ h1, h2, h3, h4, h5,
   .search-form .form-group {
     position: relative; }
     .search-form .form-group input {
-      padding-right: 50px; }
+      padding-right: 50px; 
+      margin: auto;}
   .search-form .icon {
     position: absolute;
     top: 50%;
