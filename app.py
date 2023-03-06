@@ -1,10 +1,15 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+import flask_login
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:ezbreezy@database-2.cjv1pfdwijy3.us-east-2.rds.amazonaws.com:3306/database-2'
 db = SQLAlchemy(app)
+
+login_manager = flask_login.LoginManager()
+
+login_manager.init_app(app)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -45,3 +50,36 @@ def form():
 @app.route('/Sign-up.html', methods=['GET'])
 def Signup():
     return render_template('Sign-up.html')
+
+@app.route('/Sign-up.html', methods=['POST'])
+def MakeUser():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        db.session.add()
+    return render_template('Sign-up.html')
+
+# class User(flask_login.UserMixin):
+#     pass
+
+
+# @login_manager.user_loader
+# def user_loader(email):
+#     if email not in users:
+#         return
+
+#     user = User()
+#     user.id = email
+#     return user
+
+
+# @login_manager.request_loader
+# def request_loader(request):
+#     email = request.form.get('email')
+#     if email not in users:
+#         return
+
+#     user = User()
+#     user.id = email
+#     return user
