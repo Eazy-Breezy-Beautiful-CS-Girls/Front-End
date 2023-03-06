@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 import flask_login
 
@@ -7,9 +7,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:ezbreezy@database-2.cjv1pfdwijy3.us-east-2.rds.amazonaws.com:3306/database-2'
 db = SQLAlchemy(app)
 
-login_manager = flask_login.LoginManager()
+# login_manager = flask_login.LoginManager()
 
-login_manager.init_app(app)
+# login_manager.init_app(app)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -51,17 +51,27 @@ def form():
 def Signup():
     return render_template('Sign-up.html')
 
-@app.route('/Sign-up.html', methods=['POST'])
+@app.route('/Sign-up.html', methods=['GET','POST'])
 def MakeUser():
     if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+        user = User(
+            UserID = request.form.get('username'),
+            Password = request.form.get('password'),
+            Email = request.form.get('email')
+        )
         
-        db.session.add()
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for("index.html"))
+        
     return render_template('Sign-up.html')
 
-# class User(flask_login.UserMixin):
-#     pass
+class User(flask_login.UserMixin):
+    
+    def __init__(self, UserID, Password, Email):
+        self.UserID = UserID
+        self.Email = Email
+        self.Password = Password
 
 
 # @login_manager.user_loader
