@@ -1,15 +1,15 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-import flask_login
+#import flask_login
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:ezbreezy@database-2.cjv1pfdwijy3.us-east-2.rds.amazonaws.com:3306/database-2'
 db = SQLAlchemy(app)
 
-login_manager = flask_login.LoginManager()
+#login_manager = flask_login.LoginManager()
 
-login_manager.init_app(app)
+#login_manager.init_app(app)
 
 @app.route('/', methods=['GET'])
 def index():
