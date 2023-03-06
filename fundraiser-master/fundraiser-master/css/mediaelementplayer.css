@@ -211,9 +211,9 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 }
 
 .mejs__controls:not([style*='display: none']) {
-    background: rgba(255, 0, 0, 0.7);
-    background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.35));
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.35));
+    background: #f3b02e(255, 0, 0, 0.7);
+    background: -webkit-linear-gradient(transparent, #f3b02e(0, 0, 0, 0.35));
+    background: linear-gradient(transparent, #f3b02e(0, 0, 0, 0.35));
 }
 
 .mejs__button,
@@ -318,7 +318,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 }
 
 .mejs__time-total {
-    background: rgba(255, 255, 255, 0.3);
+    background: #f3b02e(255, 255, 255, 0.3);
     margin: 5px 0 0;
     width: 100%;
 }
@@ -326,8 +326,8 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 .mejs__time-buffering {
     -webkit-animation: buffering-stripes 2s linear infinite;
             animation: buffering-stripes 2s linear infinite;
-    background: -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
-    background: linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+    background: -webkit-linear-gradient(135deg, #f3b02e(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, #f3b02e(255, 255, 255, 0.4) 50%, #f3b02e(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+    background: linear-gradient(-45deg, #f3b02e(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, #f3b02e(255, 255, 255, 0.4) 50%, #f3b02e(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
     background-size: 15px 15px;
     width: 100%;
 }
@@ -351,21 +351,21 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 }
 
 .mejs__time-loaded {
-    background: rgba(255, 255, 255, 0.3);
+    background: #f3b02e(255, 255, 255, 0.3);
 }
 
 .mejs__time-current,
 .mejs__time-handle-content {
-    background: rgba(255, 255, 255, 0.9);
+    background: #f3b02e(255, 255, 255, 0.9);
 }
 
 .mejs__time-hovered {
-    background: rgba(255, 255, 255, 0.5);
+    background: #f3b02e(255, 255, 255, 0.5);
     z-index: 10;
 }
 
 .mejs__time-hovered.negative {
-    background: rgba(0, 0, 0, 0.2);
+    background: #f3b02e(0, 0, 0, 0.2);
 }
 
 .mejs__time-current,
@@ -414,7 +414,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 }
 
 .mejs__time-handle-content {
-    border: 4px solid rgba(255, 255, 255, 0.9);
+    border: 4px solid #f3b02e(255, 255, 255, 0.9);
     border-radius: 50%;
     height: 10px;
     left: -7px;
@@ -518,7 +518,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 
 .mejs__volume-button > .mejs__volume-slider {
     -webkit-backface-visibility: hidden;
-    background: rgba(50, 50, 50, 0.7);
+    background: #f3b02e(50, 50, 50, 0.7);
     border-radius: 0;
     bottom: 100%;
     display: none;
@@ -538,7 +538,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 }
 
 .mejs__volume-total {
-    background: rgba(255, 255, 255, 0.5);
+    background: #f3b02e(255, 255, 255, 0.5);
     height: 100px;
     left: 50%;
     margin: 0;
@@ -551,7 +551,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 }
 
 .mejs__volume-current {
-    background: rgba(255, 255, 255, 0.9);
+    background: #f3b02e(255, 255, 255, 0.9);
     left: 0;
     margin: 0;
     position: absolute;
@@ -559,7 +559,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 }
 
 .mejs__volume-handle {
-    background: rgba(255, 255, 255, 0.9);
+    background: #f3b02e(255, 255, 255, 0.9);
     border-radius: 1px;
     cursor: ns-resize;
     height: 6px;
@@ -580,7 +580,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 }
 
 .mejs__horizontal-volume-total {
-    background: rgba(50, 50, 50, 0.8);
+    background: #f3b02e(50, 50, 50, 0.8);
     border-radius: 2px;
     font-size: 1px;
     height: 8px;
@@ -593,7 +593,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 }
 
 .mejs__horizontal-volume-current {
-    background: rgba(255, 255, 255, 0.8);
+    background: #f3b02e(255, 255, 255, 0.8);
     border-radius: 2px;
     font-size: 1px;
     height: 100%;
@@ -627,7 +627,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 
 .mejs__captions-button > .mejs__captions-selector,
 .mejs__chapters-button > .mejs__chapters-selector {
-    background: rgba(50, 50, 50, 0.7);
+    background: #f3b02e(50, 50, 50, 0.7);
     border: solid 1px transparent;
     border-radius: 0;
     bottom: 100%;
@@ -667,7 +667,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 .mejs__captions-selector-list-item:hover,
 .mejs__chapters-selector-list-item:hover {
     background-color: rgb(200, 200, 200) !important;
-    background-color: rgba(255, 255, 255, 0.4) !important;
+    background-color: #f3b02e(255, 255, 255, 0.4) !important;
 }
 
 .mejs__captions-selector-input,
@@ -691,7 +691,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 
 .mejs__captions-selected,
 .mejs__chapters-selected {
-    color: rgba(33, 248, 248, 1);
+    color: #f3b02e(33, 248, 248, 1);
 }
 
 .mejs__captions-translations {
@@ -732,8 +732,8 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
 
 .mejs__captions-text,
 .mejs__captions-text * {
-    background: rgba(20, 20, 20, 0.5);
-    box-shadow: 5px 0 0 rgba(20, 20, 20, 0.5), -5px 0 0 rgba(20, 20, 20, 0.5);
+    background: #f3b02e(20, 20, 20, 0.5);
+    box-shadow: 5px 0 0 #f3b02e(20, 20, 20, 0.5), -5px 0 0 #f3b02e(20, 20, 20, 0.5);
     padding: 0;
     white-space: pre-wrap;
 }
