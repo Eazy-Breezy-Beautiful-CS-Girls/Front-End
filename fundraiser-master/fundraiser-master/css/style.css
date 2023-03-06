@@ -377,6 +377,8 @@ h1, h2, h3, h4, h5,
       width: 100%;
       background: f3b02e(33, 50, 59, 0.9); }
   .bg-image.overlay-primary {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
     position: relative; }
     .bg-image.overlay-primary:after {
       position: absolute;
@@ -1157,7 +1159,8 @@ h1, h2, h3, h4, h5,
   .search-form .form-group {
     position: relative; }
     .search-form .form-group input {
-      padding-right: 50px; }
+      margin-right: 20px;
+     }
   .search-form .icon {
     position: absolute;
     top: 50%;
