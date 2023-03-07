@@ -5,8 +5,7 @@ import pymysql
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:ezbreezy@database-2.cjv1pfdwijy3.us-east-2.rds.amazonaws.com:3306/database-2'
-db = SQLAlchemy(app)
+app.secret_key = 'super secret string'  # Change this!
 
 conn = pymysql.connect(
         host= 'database-2.cjv1pfdwijy3.us-east-2.rds.amazonaws.com', 
@@ -31,13 +30,6 @@ def get_details():
 # login_manager = flask_login.LoginManager()
 
 # login_manager.init_app(app)
-
-# class User(flask_login.UserMixin):
-    
-#     def __init__(self, UserID, Password, Email):
-#         self.UserID = UserID
-#         self.Email = Email
-#         self.Password = Password
 
 @app.route('/', methods=['GET'])
 def index():
@@ -86,13 +78,10 @@ def makeuser():
         Password = request.form.get('password'),
         Email = request.form.get('email')
         insert_details(UserID,Password,Email)
-        # user = User(UserID,Password,Email)
-        # print(user)
-        # db.session.add(user)
-        # db.session.commit()
         return render_template("index.html")
 
-
+class User(flask_login.UserMixin):
+    pass
 
 # @login_manager.user_loader
 # def user_loader(email):
