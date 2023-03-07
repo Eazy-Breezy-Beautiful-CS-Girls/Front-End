@@ -1,15 +1,43 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-#import flask_login
+import flask_login
+import pymysql
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:ezbreezy@database-2.cjv1pfdwijy3.us-east-2.rds.amazonaws.com:3306/database-2'
 db = SQLAlchemy(app)
 
+conn = pymysql.connect(
+        host= 'database-2.cjv1pfdwijy3.us-east-2.rds.amazonaws.com', 
+        port = 3306,
+        user = 'admin', 
+        password = 'ezbreezy',
+        db = 'mydb',
+        )
+
+# insert query
+def insert_details(name,password,email):
+    cur=conn.cursor()
+    cur.execute("INSERT INTO UserInfo (UserID,Password,Email) VALUES (%s,%s,%s)", (name,password,email))
+    conn.commit()
+#read the data
+def get_details():
+    cur=conn.cursor()
+    cur.execute("SELECT *  FROM UserInfo")
+    details = cur.fetchall()
+    return details
+
 # login_manager = flask_login.LoginManager()
 
 # login_manager.init_app(app)
+
+# class User(flask_login.UserMixin):
+    
+#     def __init__(self, UserID, Password, Email):
+#         self.UserID = UserID
+#         self.Email = Email
+#         self.Password = Password
 
 @app.route('/', methods=['GET'])
 def index():
@@ -51,27 +79,19 @@ def form():
 def Signup():
     return render_template('Sign-up.html')
 
-@app.route('/Sign-up.html', methods=['GET','POST'])
-def MakeUser():
+@app.route('/insert', methods=['POST'])
+def makeuser():
     if request.method == 'POST':
-        user = User(
-            UserID = request.form.get('username'),
-            Password = request.form.get('password'),
-            Email = request.form.get('email')
-        )
-        
-        db.session.add(user)
-        db.session.commit()
-        return redirect(url_for("index.html"))
-        
-    return render_template('Sign-up.html')
+        UserID = request.form.get('username'),
+        Password = request.form.get('password'),
+        Email = request.form.get('email')
+        insert_details(UserID,Password,Email)
+        # user = User(UserID,Password,Email)
+        # print(user)
+        # db.session.add(user)
+        # db.session.commit()
+        return render_template("index.html")
 
-class User(flask_login.UserMixin):
-    
-    def __init__(self, UserID, Password, Email):
-        self.UserID = UserID
-        self.Email = Email
-        self.Password = Password
 
 
 # @login_manager.user_loader
