@@ -2,7 +2,7 @@
 
 1. 
 ```powershell
-pip install flask
+pip install -r "requirements.txt"
 ```
 
 3. Make sure you are in the main folder that was created when you cloned the github repo like:
