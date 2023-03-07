@@ -21,9 +21,9 @@ def insert_details(name,password,email):
     cur.execute("INSERT INTO UserInfo (UserID,Password,Email) VALUES (%s,%s,%s)", (name,password,email))
     conn.commit()
 #read the data
-def get_details():
+def get_details(username,password):
     cur=conn.cursor()
-    cur.execute("SELECT *  FROM UserInfo")
+    cur.execute('SELECT *  FROM UserInfo WHERE UserID = %s AND Password = %s', (username,password))
     details = cur.fetchall()
     return details
 
@@ -52,8 +52,10 @@ def authLogin():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        
-    return render_template('index.html')
+        if not len(get_details(username, password)) == 0:
+            return render_template('index.html')
+        else:
+            return render_template('login.html')
 
 @app.route('/contact.html', methods=['GET'])
 def contact():
