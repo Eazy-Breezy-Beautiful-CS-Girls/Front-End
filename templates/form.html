@@ -69,7 +69,8 @@
             <div class="col-md-6">
               <div class="bg-white h-100 p-4 shadow">
                 <h3 class="mb-4 text-cursive">Your Fundraiser</h3>
-                <form action="#">
+                <form method="POST">
+                  <a hidden name="Id"> {{current_user.id}} </a>
                   <div class="form-group">
                     <input name="title" type="text" class="form-control" placeholder="Title">
                   </div>
