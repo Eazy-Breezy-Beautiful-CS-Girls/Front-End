@@ -88,7 +88,7 @@ def Signup():
         Password = request.form.get('password'),
         Email = request.form.get('email')
         insert_details(UserID,Password,Email)
-        login()
+        return login()
     
 @app.route('/logout', methods=['GET'])
 def logout():
