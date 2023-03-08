@@ -49,19 +49,20 @@ def single():
     return render_template('single.html')
 
 @app.route('/form', methods=['GET','POST'])
-@app.login_required
+@flask_login.login_required
 def form():
     if request.method == 'GET':
         return render_template('form.html')
     elif request.method == 'POST':
         title =request.form.get('title')
         description = request.form.get('Description')
-        goal = request.form.get('Goal')
+        goal = int(request.form.get('Goal'))
         id = request.form.get('Id')
+        print(id)
         
         database.add_fund(id,title, description,goal)
         
-        return redirect("index")
+        return redirect(url_for("index"))
 
 @app.route('/Sign-up', methods=['GET','POST'])
 def Signup():
