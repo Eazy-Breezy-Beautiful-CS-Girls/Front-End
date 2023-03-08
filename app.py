@@ -64,7 +64,7 @@ def login():
             flask_login.login_user(user)
             add_login(username)
             flash('Logged in successfully.')
-            return render_template('index.html')
+            return redirect(url_for('index'))
         return render_template('login.html')    
 
 @app.route('/contact', methods=['GET'])
