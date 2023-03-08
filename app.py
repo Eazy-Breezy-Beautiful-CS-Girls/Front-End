@@ -88,7 +88,12 @@ def Signup():
         Password = request.form.get('password'),
         Email = request.form.get('email')
         insert_details(UserID,Password,Email)
-        return render_template("index.html")
+        login()
+    
+@app.route('/logout', methods=['GET'])
+def logout():
+    flask_login.logout_user()
+    return redirect(url_for('index'))
     
 class User(flask_login.UserMixin):
     pass
