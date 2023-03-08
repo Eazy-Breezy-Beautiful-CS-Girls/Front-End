@@ -48,9 +48,20 @@ def contact():
 def single():
     return render_template('single.html')
 
-@app.route('/form', methods=['GET'])
+@app.route('/form', methods=['GET','POST'])
+@app.login_required
 def form():
-    return render_template('form.html')
+    if request.method == 'GET':
+        return render_template('form.html')
+    elif request.method == 'POST':
+        title =request.form.get('title')
+        description = request.form.get('Description')
+        goal = request.form.get('Goal')
+        id = request.form.get('Id')
+        
+        database.add_fund(id,title, description,goal)
+        
+        return redirect("index")
 
 @app.route('/Sign-up', methods=['GET','POST'])
 def Signup():
