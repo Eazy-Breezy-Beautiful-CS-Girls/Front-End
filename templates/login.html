@@ -46,13 +46,6 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 text-md-left pl-0">
-              <a href="#" class=" pr-3 pl-0">Home</a>
-              <a href="#" class="p-3">Events</a>
-              <a href="#" class="p-3">Become A Volunteer</a>
-            </div>
-            <div class="col-md-6 text-md-right">
-              <a href="#" class="p-3"><span class="icon-twitter"></span></a>
-              <a href="#" class="p-3"><span class="icon-facebook"></span></a>
             </div>
           </div>
         </div>
@@ -70,11 +63,10 @@
 
             <nav class="site-navigation text-left ml-auto " role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                <li class="active"><a href="/" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link">About Us</a></li>
-                <li><a href="causes.html" class="nav-link">Our Causes</a></li>
-                <li><a href="login.html" class="nav-link">Login</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="form" class="nav-link">Create Fundraiser</a></li>
+                <li><a href="contact" class="nav-link">Profile</a></li>
+                <li class="active"><a href="login" class="nav-link">Login</a></li>
               </ul>
             </nav>
 
@@ -95,15 +87,16 @@
       
       <div class="m-margins bg-white h-100 p-4 shadow">
         <h3 class="form-control-label mb-4 text-cursive">Login</h3>
-        <form action="#">
+        <form method="POST">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="User Name">
+            <input name="username" type="text" class="form-control" placeholder="Username">
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password">
+            <input name="password" type="password" class="form-control" placeholder="Password">
           </div>
           <div class="form-control-label">
             <input type="submit" value="Login" class="btn btn-primary">
+            <a href="/Sign-up.html">Sign-up</a>
           </div>
         </form>
       </div>
