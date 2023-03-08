@@ -23,6 +23,14 @@ def about():
 def causes():
     return render_template('causes.html')
 
+@app.route('/Fundrasier-2', methods=['GET'])
+def Fundrasier2():
+    return render_template('Fundrasier-2.html')
+
+@app.route('/Fundrasier-3', methods=['GET'])
+def Fundrasier3():
+    return render_template('Fundrasier-3.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
