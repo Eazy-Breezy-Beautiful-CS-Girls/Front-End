@@ -19,9 +19,10 @@ def add_login(id):
     conn.commit()
 def add_fund(id,title,description,goal):
     cur=conn.cursor()
+    cur.execute('INSERT IGNORE INTO UserFundLink (UserID,FundName) VALUES (%s,%s)', (id,title))
+    conn.commit()
     cur.execute('INSERT IGNORE INTO Funds (FundName,FundType,FundGoal) VALUES (%s,%s,%s)', (title,description,goal))
     conn.commit()
-    cur.execute('INSERT IGNORE INTO UserFundLink (UserID,FundName) VALUES (%s,%s)', (id,title))
 #read the data
 def get_details(username,password):
     cur=conn.cursor()
