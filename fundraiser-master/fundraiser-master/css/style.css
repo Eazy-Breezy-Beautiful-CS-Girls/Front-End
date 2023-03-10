@@ -1157,7 +1157,8 @@ h1, h2, h3, h4, h5,
   background: #f7f7f7;
   padding: 10px; }
   .search-form .form-group {
-    position: relative; }
+    position: relative;
+    margin-right: 20px; }
     .search-form .form-group input {
       margin-right: 20px;
      }
