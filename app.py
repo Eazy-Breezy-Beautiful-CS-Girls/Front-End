@@ -23,12 +23,12 @@ def about():
 def causes():
     return render_template('causes.html')
 
-@app.route('/Fundrasier-2', methods=['GET'])
-def Fundrasier2():
+@app.route('/Fundraiser-2', methods=['GET'])
+def Fundraiser2():
     return render_template('Fundrasier-2.html')
 
-@app.route('/Fundrasier-3', methods=['GET'])
-def Fundrasier3():
+@app.route('/Fundraiser-3', methods=['GET'])
+def Fundraiser3():
     return render_template('Fundrasier-3.html')
 
 @app.route('/login', methods=['GET', 'POST'])
