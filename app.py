@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session, g
 from flask_sqlalchemy import SQLAlchemy
 import flask_login
 import database
@@ -45,6 +45,8 @@ def login():
             flask_login.login_user(user)
             database.add_login(username)
             flash('Logged in successfully.')
+            session['user_id'] = username
+            g.user = True
             return redirect(url_for('index'))
         return render_template('login.html')
 
@@ -75,6 +77,19 @@ def Signup():
 def logout():
     flask_login.logout_user()
     return redirect(url_for('index'))
+
+# @app.before_request
+# def load_logged_in_user():
+#     """If a user id is stored in the session, load the user object from
+#     the database into ``g.user``."""
+#     user_id = session.get("user_id")
+
+#     if user_id is None:
+#         g.user = None
+#     else:
+#         g.user = (
+#             database.get_login(user_id)
+#         )
 
 class User(flask_login.UserMixin):
     pass

@@ -28,3 +28,7 @@ def get_login(id):
     cur.execute('SELECT * FROM LoggedIn WHERE UserID = %s', (id))
     details = cur.fetchall()
     return details
+def logged_in(user_id):
+    cur=conn.cursor()
+    return cur.execute("SELECT * FROM LoggedIn WHERE id = ?", (user_id,)).fetchone()
+    
