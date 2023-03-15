@@ -7,7 +7,7 @@ from flask import request
 from flask import session
 from flask import url_for
 
-from database import get_db
+from FrontEnd.database import get_db
 
 bp = Blueprint("fund", __name__)
 
@@ -47,6 +47,6 @@ def form():
         title = request.form.get('title')
         description = request.form.get('description')
         goal = int(request.form.get('goal'))
-        get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundType, FundGoal) VALUES (%s, %s, %d)', (title,description,goal))
+        get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundType, FundGoal, FundRaised) VALUES (%s, %s, %s, 0)', (title,description,goal))
         get_db().commit()
         return redirect(url_for('index'))
