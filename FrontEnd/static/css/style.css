@@ -411,7 +411,11 @@ h1, h2, h3, h4, h5,
       bottom: 0;
       z-index: 0;
       width: 100%;
-      background: #f3b02e(0, 166, 81, 0.9); }
+      
+      background: #f3b02e(0, 166, 81, 0.9);
+      }
+
+::after {}
   .bg-image > .container {
     position: relative;
     z-index: 1; }
@@ -1090,7 +1094,7 @@ h1, h2, h3, h4, h5,
   border: 1px solid #e6e6e6;
   margin-left: auto;
   margin-right: auto;
-  width: 500px;
+  /* width: 500px; */
 }
   .form-control:hover, .form-control:active, .form-control:focus {
     border: 1px solid #666666; }
@@ -1183,6 +1187,7 @@ h1, h2, h3, h4, h5,
   background: #f7f7f7;
   padding: 10px; }
   .search-form .form-group {
+    width: 85%;
     position: relative; }
     .search-form .form-group input {
       padding-right: 50px; 
