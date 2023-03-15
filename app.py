@@ -23,6 +23,14 @@ def about():
 def causes():
     return render_template('causes.html')
 
+@app.route('/Fundrasier-2', methods=['GET'])
+def Fundrasier2():
+    return render_template('Fundrasier-2.html')
+
+@app.route('/Fundrasier-3', methods=['GET'])
+def Fundrasier3():
+    return render_template('Fundrasier-3.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -48,21 +56,9 @@ def contact():
 def single():
     return render_template('single.html')
 
-@app.route('/form', methods=['GET','POST'])
-@flask_login.login_required
+@app.route('/form', methods=['GET'])
 def form():
-    if request.method == 'GET':
-        return render_template('form.html')
-    elif request.method == 'POST':
-        title =request.form.get('title')
-        description = request.form.get('Description')
-        goal = int(request.form.get('Goal'))
-        id = request.form.get('Id')
-        print(id)
-        
-        database.add_fund(id,title, description,goal)
-        
-        return redirect(url_for("index"))
+    return render_template('form.html')
 
 @app.route('/Sign-up', methods=['GET','POST'])
 def Signup():
