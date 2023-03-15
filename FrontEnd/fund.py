@@ -7,6 +7,8 @@ from flask import request
 from flask import session
 from flask import url_for
 
+from database import get_db
+
 bp = Blueprint("fund", __name__)
 
 @bp.route('/', methods=['GET'])
@@ -37,6 +39,14 @@ def contact():
 def single():
     return render_template('single.html')
 
-@bp.route('/form', methods=['GET'])
+@bp.route('/form', methods=['GET', 'POST'])
 def form():
-    return render_template('form.html')
+    if request.method == 'GET':
+        return render_template('form.html')
+    else:
+        title = request.form.get('title')
+        description = request.form.get('description')
+        goal = int(request.form.get('goal'))
+        get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundType, FundGoal) VALUES (%s, %s, %d)', (title,description,goal))
+        get_db().commit()
+        return redirect(url_for('index'))
