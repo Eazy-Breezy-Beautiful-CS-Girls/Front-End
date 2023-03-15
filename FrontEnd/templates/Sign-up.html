@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Sign-Up{% endblock %}
+
+{% block nav %}
+<li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+<li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
+<li><a href="{{ url_for('fund.contact') }}" class="nav-link">Profile</a></li>
+{% if g.user %}
+<li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
+{% else %}
+<li class="active"><a href="{{ url_for('auth.Signup') }}" class="nav-link">Sign-up</a></li>
+<li><a href="{{ url_for('auth.login') }}" class="nav-link">Login</a></li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div>
+  <div class="m-margins bg-white h-100 p-4 shadow">
+    <h3 class="form-control-label mb-4 text-cursive">Sign-up</h3>
+    <form method="POST">
+      <div class="form-group">
+        <input name="username" type="text" class="form-control" placeholder="Username">
+      </div>
+      <div class="form-group">
+        <input name="email" type="email" class="form-control" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <input name="password" type="password" class="form-control" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <input name="auth_password" type="password" class="form-control" placeholder="Re-enter Password">
+      </div>
+      <div class="form-control-label">
+        <input type="submit" value="Sign Up" class="btn btn-primary">
+      </div>
+    </form>
+  </div> 
+</div>
+{% endblock %}
