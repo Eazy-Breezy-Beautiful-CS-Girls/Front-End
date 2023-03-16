@@ -23,6 +23,12 @@ def about():
 def causes():
     return render_template('causes.html')
 
+@bp.route('/Fundraiser/<str:title>', methods=['GET'])
+def fundraiser(fund_name):
+    result = get_db().cursor().execute('SELECT * FROM Fund WHERE FundName IS %s',(fund_name))
+    fund = result.fetchone()
+    return render_template('Fundraiser.html', fund=fund)
+
 @bp.route('/Fundraiser-2', methods=['GET'])
 def Fundraiser2():
     return render_template('Fundrasier-2.html')
