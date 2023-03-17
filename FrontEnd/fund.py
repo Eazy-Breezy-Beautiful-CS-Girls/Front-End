@@ -25,6 +25,7 @@ def causes():
 
 @bp.route('/Fundraiser/<string:title>', methods=['GET'])
 def fundraiser(fund_name):
+    
     result = get_db().cursor().execute('SELECT * FROM Fund WHERE FundName IS %s',(fund_name))
     fund = result.fetchone()
     return render_template('Fundraiser.html', fund=fund)
