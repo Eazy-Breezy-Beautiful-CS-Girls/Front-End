@@ -55,6 +55,7 @@ def login():
             session.clear()
             session['user_id'] = username
             return redirect(url_for('index'))
+        flash('Login failed')
         return render_template('login.html')
     
 @bp.route('/Sign-up', methods=['GET','POST'])
