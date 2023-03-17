@@ -23,12 +23,12 @@ def about():
 def causes():
     return render_template('causes.html')
 
-@bp.route('/Fundraiser/<string:title>', methods=['GET'])
-def fundraiser(fund_name):
-    
-    result = get_db().cursor().execute('SELECT * FROM Fund WHERE FundName IS %s',(fund_name))
-    fund = result.fetchone()
-    return render_template('Fundraiser.html', fund=fund)
+@bp.route('/fundraisers/<string:fund_name>', methods=['GET'])
+def fundraisers(fund_name):
+    with get_db().cursor() as cursor:
+        cursor.execute('SELECT * FROM Funds WHERE FundName = %s',(fund_name))
+        fund = cursor.fetchone()
+        return render_template('fundraisers.html', fund=fund)
 
 @bp.route('/Fundraiser-2', methods=['GET'])
 def Fundraiser2():
@@ -50,7 +50,7 @@ def single():
 def form():
     if request.method == 'GET':
         return render_template('form.html')
-    else:
+    elif request.method == 'POST':
         title = request.form.get('title')
         description = request.form.get('description')
         goal = int(request.form.get('goal'))

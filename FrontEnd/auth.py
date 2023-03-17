@@ -39,6 +39,7 @@ def load_logged_in_user():
 @bp.route('/logout', methods=['GET'])
 def logout():
     session.clear()
+    get_db().cursor().execute('DELETE FROM')
     return redirect(url_for('index'))
 
 @bp.route('/login', methods=['GET', 'POST'])
