@@ -17,11 +17,9 @@
 <div class="owl-carousel-wrapper">
 
     <div class="box-92819">
-        <h1 class="text-white mb-3">Title</h1>
-        <p class="lead text-white">TDescription</p>
+        <h1 class="text-white mb-3">{{ fund.FundName }}</h1>
+        <p class="lead text-white">{{ fund.FundType }}</p>
     </div>
-
-
     <div class="ftco-cover-1 overlay" style="background-image: url('static/images/Homeless.jpg');"></div>
 
 </div>
@@ -33,8 +31,8 @@
         <div class="row mb-5 align-items-st">
             <div class="col-md-5">
                 <div class="heading-20219">
-                    <h2 class="title text-cursive mb-4">Helping the Homeless</h2>
-                    <p>Long Description</p>
+                    <h2 class="title text-cursive mb-4">{{ fund.FundName }}</h2>
+                    <p>{{ fund.FundType }}</p>
                     <p><a href="#" class="btn btn-primary rounded-0 px-4">Donate Now</a></p>
                 </div>
             </div>
@@ -44,19 +42,15 @@
                     <a href="#" class="cause-link d-block">
                         <img src="static/images/Giving-Food.jpg" alt="Image" class="img-fluid">
                         <div class="custom-progress-wrap">
-                            <span class="caption">% Complete</span>
-                            <div class="custom-progress-inner">
-                                <div class="custom-progress bg-danger" style="width: 80%;"></div>
-                            </div>
+                            <span class="caption">{{ fund.FundGoal }}</span>
                         </div>
                     </a>
 
                     <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                        <span class="badge-danger py-1 small px-2 rounded mb-3 d-inline-block">Tag</span>
-                        <h3 class="mb-4"><a href="#">Title</a></h3>
+                        <h3 class="mb-4"><a href="#">{{ fund.FundName }}</a></h3>
                         <div class="border-top border-light border-bottom py-2 d-flex">
                             <div>Donated</div>
-                            <div class="ml-auto"><strong class="text-primary">$</strong></div>
+                            <div class="ml-auto"><strong class="text-primary">{{ fund.FundRaised }}</strong></div>
                         </div>
 
                     </div>
