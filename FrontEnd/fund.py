@@ -16,7 +16,6 @@ def index():
     with get_db().cursor() as cursor:
         cursor.execute('SELECT * FROM Funds')
         funds = cursor.fetchmany(3)
-        print(funds)
         return render_template('index.html', funds=funds)
 
 @bp.route('/about', methods=['GET'])
@@ -33,14 +32,6 @@ def fundraisers(fund_name):
         cursor.execute('SELECT * FROM Funds WHERE FundName = %s',(fund_name))
         fund = cursor.fetchone()
         return render_template('fundraisers.html', fund=fund)
-
-@bp.route('/Fundraiser-2', methods=['GET'])
-def Fundraiser2():
-    return render_template('Fundrasier-2.html')
-
-@bp.route('/Fundraiser-3', methods=['GET'])
-def Fundraiser3():
-    return render_template('Fundrasier-3.html')
 
 @bp.route('/contact', methods=['GET'])
 def contact():
