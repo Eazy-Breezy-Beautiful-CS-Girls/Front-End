@@ -29,24 +29,4 @@ def init_app(app):
     """
     app.teardown_appcontext(close_db)
 
-# # insert query
-# def insert_details(name,password,email):
-#     cur=conn.cursor()
-#     cur.execute("INSERT IGNORE INTO UserInfo (UserID,Password,Email) VALUES (%s,%s,%s)", (name,password,email))
-#     conn.commit()
-# #read the data
-# def get_details(username,password):
-#     cur=conn.cursor()
-#     cur.execute('SELECT * FROM UserInfo WHERE UserID = %s AND Password = %s', (username,password))
-#     details = cur.fetchall()
-#     return details
-# def add_login(id):
-#     cur=conn.cursor()
-#     cur.execute("INSERT IGNORE INTO LoggedIn (UserID) VALUES (%s)", (id))
-#     conn.commit()
-# def get_login(id):
-#     cur=conn.cursor()
-#     cur.execute('SELECT * FROM LoggedIn WHERE UserID = %s', (id,))
-#     details = cur.fetchone()
-#     return details
     

@@ -3,7 +3,7 @@
 
 {% block nav %}
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
-<li class="active"><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
+<li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
 <li><a href="{{ url_for('fund.contact') }}" class="nav-link">Profile</a></li>
 {% if g.user %}
 <li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
