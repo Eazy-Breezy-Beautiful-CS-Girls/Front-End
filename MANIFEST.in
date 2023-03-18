@@ -1,0 +1,3 @@
+graft FrontEnd/static
+graft FrontEnd/templates
+global-exclude *.pyc

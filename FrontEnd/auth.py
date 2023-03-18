@@ -39,7 +39,7 @@ def load_logged_in_user():
 @bp.route('/logout', methods=['GET'])
 def logout():
     session.clear()
-    get_db().cursor().execute('DELETE FROM')
+    get_db().cursor().execute('DELETE FROM LoggedIn WHERE UserID=%s', (g.user))
     return redirect(url_for('index'))
 
 @bp.route('/login', methods=['GET', 'POST'])

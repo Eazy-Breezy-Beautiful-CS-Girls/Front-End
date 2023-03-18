@@ -57,11 +57,4 @@ def form():
         get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundType, FundGoal, FundRaised) VALUES (%s, %s, %s, 0)', (title,description,goal))
         get_db().commit()
         return redirect(url_for('index'))
-
-@bp.route('/fundraisers', methods=['GET'])
-def fundraisers():
     
-    result = get_db().cursor().execute('SELECT * FROM Fund WHERE FundName IS %s',(fund_name))
-    fund = result.fetchone()
-    get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundType, FundGoal, FundRaised) VALUES (%s, %s, %s, 0)', (title,description,goal))
-    return render_template('fundraisers.html', fund=fund)
