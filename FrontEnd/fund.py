@@ -13,7 +13,10 @@ bp = Blueprint("fund", __name__)
 
 @bp.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    with get_db().cursor() as cursor:
+        cursor.execute('SELECT * FROM Funds')
+        funds = cursor.fetchmany(3)
+        return render_template('index.html', funds=funds)
 
 @bp.route('/about', methods=['GET'])
 def about():
