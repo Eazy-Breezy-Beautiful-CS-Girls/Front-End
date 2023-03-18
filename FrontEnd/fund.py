@@ -16,6 +16,7 @@ def index():
     with get_db().cursor() as cursor:
         cursor.execute('SELECT * FROM Funds')
         funds = cursor.fetchmany(3)
+        print(funds)
         return render_template('index.html', funds=funds)
 
 @bp.route('/about', methods=['GET'])
