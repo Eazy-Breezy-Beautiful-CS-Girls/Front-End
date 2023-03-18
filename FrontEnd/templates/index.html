@@ -72,7 +72,7 @@
             </div>
           </a>
           <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-            <h3 class="mb-4"><a href="causes">{{ fund[0] }}</a></h3>
+            <h3 class="mb-4">{{ fund[0] }}</h3>
             <div class="border-top border-light border-bottom py-2 d-flex">
               <div>Donated</div>
               <div class="ml-auto"><strong class="text-primary">${{ fund[3] }}</strong></div>
@@ -88,7 +88,7 @@
   <div class="container">
     <div class="d-md-flex cta-20101 align-self-center bg-light p-5">
       <div class=""><h2 class="text-cursive">Show your support for a local or international cause</h2></div>
-      <div class="ml-auto"><a href="#" class="btn btn-primary">Donate Now</a></div>
+      <div class="ml-auto"><a href="{{url_for('fund.donation')}}" class="btn btn-primary">Donate Now</a></div>
     </div>
   </div>
 </div>

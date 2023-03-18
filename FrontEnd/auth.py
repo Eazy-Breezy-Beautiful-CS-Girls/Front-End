@@ -32,9 +32,10 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        g.user = (
-            get_db().cursor().execute('SELECT * FROM LoggedIn WHERE UserID = %s', (user_id,))
-        )
+        with get_db().cursor as cursor:
+            user = cursor.execute('SELECT * FROM LoggedIn WHERE UserID = %s', (user_id,)).fetchone()
+            
+            g.user = (user)
 
 @bp.route('/logout', methods=['GET'])
 def logout():
