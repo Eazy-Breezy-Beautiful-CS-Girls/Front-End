@@ -68,6 +68,8 @@ def Signup():
         UserID = request.form.get('username'),
         Password = request.form.get('password'),
         Email = request.form.get('email')
-        get_db().cursor().execute("INSERT IGNORE INTO UserInfo (UserID,Password,Email) VALUES (%s,%s,%s)", (UserID,Password,Email))
+        Fname = request.form.get('fname')
+        Lname = request.form.get('lname')
+        get_db().cursor().execute("INSERT IGNORE INTO UserInfo (UserID,Password,Email,FirstName,LastName) VALUES (%s,%s,%s,%s,%s)", (UserID,Password,Email,Fname,Lname))
         get_db().commit()
         return login()
