@@ -54,7 +54,7 @@ def form():
         get_db().commit()
         return redirect(url_for('index'))
 
-@bp.route('/donation', methods=['GET', 'POST'])
+@bp.route('/donation/<string:title>', methods=['GET', 'POST'])
 def donation(title=None):
     if request.method == 'POST':
         title = request.form.get('title')
