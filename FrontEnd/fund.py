@@ -55,7 +55,7 @@ def form():
         return redirect(url_for('index'))
 
 @bp.route('/donation', methods=['GET', 'POST'])
-def donation():
+def donation(title=None):
     if request.method == 'POST':
         title = request.form.get('title')
         amount = request.form.get('amount')
@@ -65,5 +65,6 @@ def donation():
             get_db().cursor().execute('INSERT IGNORE INTO Donations (FundName, UserID, DonoAmount, DonoTime) VALUES (%s,%s,%s,%s)',(title,g.user,amount,datetime.datetime.now()))
             get_db().commit()
         return redirect(url_for('index'))
-    return render_template('donation.html')
+    print(title)
+    return render_template('donation.html', title=title)
         

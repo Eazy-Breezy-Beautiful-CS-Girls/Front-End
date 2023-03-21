@@ -25,7 +25,11 @@
                 <h3 class="mb-4 text-cursive">Donate</h3>
                 <form method="POST">
                     <div class="form-group">
+                    {% if title != None %}
+                    <input type="text" class="form-control" placeholder="Title" name="title" value="{{ title }}">
+                    {% else %}
                     <input type="text" class="form-control" placeholder="Title" name="title">
+                    {% endif %}
                     </div>
                     <div class="form-group">
                     <input type="number" class="form-control" placeholder="Donation amount" name="amount">

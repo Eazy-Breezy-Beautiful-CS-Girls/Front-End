@@ -3,7 +3,7 @@
 
 {% block nav %}
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
-<li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
+<li class="active"><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
 <li><a href="{{ url_for('fund.contact') }}" class="nav-link">Profile</a></li>
 {% if g.user %}
 <li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
@@ -14,6 +14,7 @@
 {% endblock %}
 
 {% block content %}
+{% set title = fund[0] %}
 <div class="owl-carousel-wrapper">
 
     <div class="box-92819">
@@ -33,7 +34,7 @@
                 <div class="heading-20219">
                     <h2 class="title text-cursive mb-4">{{ fund[0] }}</h2>
                     <p>{{ fund[1] }}</p>
-                    <p><a href="{{url_for('fund.donation')}}" class="btn btn-primary rounded-0 px-4">Donate Now</a></p>
+                    <p><a href="{{url_for('fund.donation', title=title)}}" class="btn btn-primary rounded-0 px-4">Donate Now</a></p>
                 </div>
             </div>
             <div class="col-md-7">
