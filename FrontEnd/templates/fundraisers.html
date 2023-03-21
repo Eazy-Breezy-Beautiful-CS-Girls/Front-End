@@ -4,8 +4,8 @@
 {% block nav %}
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
 <li class="active"><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
-<li><a href="{{ url_for('fund.contact') }}" class="nav-link">Profile</a></li>
 {% if g.user %}
+<li><a href="{{ url_for('fund.contact', UserID=g.user[0]) }}" class="nav-link">Profile</a></li>
 <li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
 {% else %}
 <li><a href="{{ url_for('auth.Signup') }}" class="nav-link">Sign-up</a></li>
@@ -66,7 +66,7 @@
     <div class="container">
           <div class="d-md-flex cta-20101 align-self-center bg-light p-5">
             <div class=""><h2 class="text-cursive">Show your support for a local or international cause</h2></div>
-            <div class="ml-auto"><a href="#" class="btn btn-primary">Donate Now</a></div>
+            <div class="ml-auto"><a href="{{url_for('fund.donation', title=fund[0])}}" class="btn btn-primary">Donate Now</a></div>
           </div>
       
     </div>
