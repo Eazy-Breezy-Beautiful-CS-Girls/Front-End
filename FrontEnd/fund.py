@@ -63,7 +63,7 @@ def form():
         title = request.form.get('title')
         description = request.form.get('description')
         goal = int(request.form.get('goal'))
-        user_id = g.user_id[0]
+        user_id = g.user[0]
         get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundType, FundGoal, FundRaised) VALUES (%s, %s, %s, 0);\
                                   INSERT IGNORE INTO UserFundLink (%s,%s);', (title,description,goal,user_id,title))
         get_db().commit()
