@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% block title %}Profile{% endblock %}
 
 {% block nav %}
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
 <li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
-<li class="active"><a href="{{ url_for('fund.contact') }}" class="nav-link">Profile</a></li>
 {% if g.user %}
+<li class="active"><a href="{{ url_for('fund.contact', UserID=g.user[0]) }}" class="nav-link">Profile</a></li>
 <li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
 {% else %}
 <li><a href="{{ url_for('auth.Signup') }}" class="nav-link">Sign-up</a></li>
@@ -18,60 +19,94 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mb-5" >
-        <form action="#" method="post">
-          <div class="form-group row">
-            <div class="col-md-6 mb-4 mb-lg-0">
-              <input type="text" class="form-control" placeholder="First name">
-            </div>
-            <div class="col-md-6">
-              <input type="text" class="form-control" placeholder="Last name">
+        <h3 class="text-cursive mb-4">Profile Info</h3>
+        <form class="form" method="POST">
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input class="form-control" type="text" name="fname" value="{{user[5]}}">
+                    <label>Last Name</label>
+                    <input class="form-control" type="text" name="lname" value="{{user[6]}}">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input class="form-control" type="text" name="username" placeholder="johnny.s" value="{{user[0]}}" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" type="email" placeholder="user@example.com" value="{{user[2]}}" name="email">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mb-3">
+                  <div class="form-group">
+                    <label>About</label>
+                    <textarea name="bio" class="form-control" rows="5" placeholder="My Bio">{{user[3]}}</textarea>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="form-group row">
-            <div class="col-md-12">
-              <input type="text" class="form-control" placeholder="Phone number">
+          <div class="row">
+            <div class="col-12 col-sm-6 mb-3">
+              <div class="mb-2"><h3 class="text-cursive mb-4">Change Password</h3></div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label>Current Password</label>
+                    <input class="form-control" type="password" placeholder="••••••">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label>New Password</label>
+                    <input class="form-control" type="password" placeholder="••••••">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                    <input class="form-control" type="password" placeholder="••••••"></div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="form-group row">
-            <div class="col-md-12">
-              <input type="text" class="form-control" placeholder="Email">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-md-12">
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-md-6 mr-auto">
-              <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5 rounded-0" value="Save changes">
+          <div class="row">
+            <div class="col d-flex justify-content-end">
+              <button class="btn btn-primary" type="submit">Save Changes</button>
             </div>
           </div>
         </form>
       </div>
       <div class="col-lg-4 ml-auto">
         <div class="bg-white p-3 p-md-5">
-          <h3 class="text-cursive mb-4">Profile Info</h3>
-          <ul class="list-unstyled footer-link">
-            <li class="d-block mb-3">
-              <span class="d-block text-muted small text-uppercase font-weight-bold">Address:</span>
-              <span>Full name:</span></li>
-            <li class="d-block mb-3"><span class="d-block text-muted small text-uppercase font-weight-bold">Phone:</span><span>PHONE #</span></li>
-            <li class="d-block mb-3"><span class="d-block text-muted small text-uppercase font-weight-bold">Email:</span><span>EMAIL</span></li>
-          </ul>
+          <div class="mb-3" style="width: 280px; height: 280px;">
+            <div class="d-flex justify-content-center align-items-center rounded" style="width: 280px; height: 280px; background-color: rgb(233, 236, 239);">
+              <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">280x280</span>
+            </div>
+          </div>
+            <div class="mt-2">
+              <button class="btn btn-primary" type="button">
+                <i class="fa fa-fw fa-camera"></i>
+                <span>Change Photo</span>
+              </button>
+            </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="site-section">
-  <div class="container">
-    <div class="d-md-flex cta-20101 align-self-center bg-light p-5">
-      <div class=""><h2 class="text-cursive">Show your support for a local or international cause</h2></div>
-      <div class="ml-auto"><a href="{{url_for('fund.donation')}}" class="btn btn-primary">Donate Now</a></div>
     </div>
   </div>
 </div>

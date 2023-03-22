@@ -7,6 +7,7 @@ from flask import request
 from flask import session
 from flask import url_for
 import datetime
+from FrontEnd.auth import login_required
 
 from FrontEnd.database import get_db
 
@@ -34,9 +35,21 @@ def fundraisers(fund_name):
         fund = cursor.fetchone()
         return render_template('fundraisers.html', fund=fund)
 
-@bp.route('/contact', methods=['GET'])
-def contact():
-    return render_template('contact.html')
+@bp.route('/contact/<string:UserID>', methods=['GET','POST'])
+@login_required
+def contact(UserID):
+    if request.method == 'GET':
+        with get_db().cursor() as cursor:
+            cursor.execute('SELECT * FROM UserInfo WHERE UserID = %s',(UserID))
+            user = cursor.fetchone()
+        return render_template('contact.html', user=user)
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    email = request.form.get('email')
+    bio = request.form.get('bio')
+    get_db().cursor().execute('UPDATE UserInfo SET FirstName = %s, LastName = %s, Email = %s, Bio = %s WHERE UserID = %s',(fname, lname, email, bio, UserID))
+    get_db().commit()
+    return redirect(url_for('fund.contact', UserID=UserID))
 
 @bp.route('/single', methods=['GET'])
 def single():
@@ -50,12 +63,29 @@ def form():
         title = request.form.get('title')
         description = request.form.get('description')
         goal = int(request.form.get('goal'))
-        get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundType, FundGoal, FundRaised) VALUES (%s, %s, %s, 0)', (title,description,goal))
+        user_id = g.user_id[0]
+        get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundType, FundGoal, FundRaised) VALUES (%s, %s, %s, 0);\
+                                  INSERT IGNORE INTO UserFundLink (%s,%s);', (title,description,goal,user_id,title))
         get_db().commit()
         return redirect(url_for('index'))
 
+@bp.route('/donation/<string:title>', methods=['GET', 'POST'])
+def donation(title=''):
+    if request.method == 'POST':
+        title = request.form.get('title')
+        amount = request.form.get('amount')
+        get_db().cursor().execute('UPDATE Funds SET FundRaised = FundRaised+%s WHERE FundName = %s',(amount,title))
+        get_db().commit()
+        if g.user:
+            get_db().cursor().execute('INSERT IGNORE INTO Donations (FundName, UserID, DonoAmount, DonoTime) VALUES (%s,%s,%s,%s)',(title,g.user,amount,datetime.datetime.now()))
+            get_db().commit()
+        return redirect(url_for('index'))
+    if title == '':
+        return render_template('donation.html')
+    return render_template('donation.html', title=title)
+
 @bp.route('/donation', methods=['GET', 'POST'])
-def donation():
+def donate():
     if request.method == 'POST':
         title = request.form.get('title')
         amount = request.form.get('amount')
