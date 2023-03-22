@@ -411,9 +411,11 @@ h1, h2, h3, h4, h5,
       bottom: 0;
       z-index: 0;
       width: 100%;
-      
-      background: #f3b02e(0, 166, 81, 0.9);
       }
+
+  .donationpic {
+    background: linear-gradient(to top, #f3b12e77, #75c8ae8e);
+  }
 
 ::after {}
   .bg-image > .container {
