@@ -1,4 +1,0 @@
-flask
-pymysql
-flask-sqlalchemy
-flask-login
