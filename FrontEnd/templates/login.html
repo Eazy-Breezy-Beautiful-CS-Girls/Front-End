@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% block title %}Login{% endblock %}
 
 {% block nav %}
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
 <li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
-<li><a href="{{ url_for('fund.contact') }}" class="nav-link">Profile</a></li>
 {% if g.user %}
+<li><a href="{{ url_for('fund.contact', UserID=g.user[0]) }}" class="nav-link">Profile</a></li>
 <li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
 {% else %}
 <li><a href="{{ url_for('auth.Signup') }}" class="nav-link">Sign-up</a></li>
@@ -15,7 +16,6 @@
 
 {% block content %}
 <div>
-  
   <div class="m-margins bg-white h-100 p-4 shadow">
     <h3 class="form-control-label mb-4 text-cursive">Login</h3>
     <form method="POST">
@@ -27,12 +27,8 @@
       </div>
       <div class="form-control-label">
         <input type="submit" value="Login" class="btn btn-primary">
-        <a href="/Sign-up">Sign-up</a>
-        <a href="/logout">logout</a>
       </div>
     </form>
   </div>
-  
-  
 </div>
 {% endblock %}

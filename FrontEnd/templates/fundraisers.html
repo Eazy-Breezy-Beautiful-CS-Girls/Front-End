@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% block title %}fundraisers{% endblock %}
 
 {% block nav %}
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
-<li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
-<li><a href="{{ url_for('fund.contact') }}" class="nav-link">Profile</a></li>
+<li class="active"><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
 {% if g.user %}
+<li><a href="{{ url_for('fund.contact', UserID=g.user[0]) }}" class="nav-link">Profile</a></li>
 <li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
 {% else %}
 <li><a href="{{ url_for('auth.Signup') }}" class="nav-link">Sign-up</a></li>
@@ -15,59 +16,55 @@
 
 {% block content %}
 <div class="owl-carousel-wrapper">
-
     <div class="box-92819">
         <h1 class="text-white mb-3">{{ fund[0] }}</h1>
         <p class="lead text-white">{{ fund[1] }}</p>
     </div>
     <div class="ftco-cover-1 overlay" style="background-image: url('../static/images/Homeless.jpg');"></div>
-
 </div>
-
-
 <div class="site-section">
     <div class="container">
-
         <div class="row mb-5 align-items-st">
             <div class="col-md-5">
                 <div class="heading-20219">
                     <h2 class="title text-cursive mb-4">{{ fund[0] }}</h2>
                     <p>{{ fund[1] }}</p>
-                    <p><a href="{{url_for('fund.donation')}}" class="btn btn-primary rounded-0 px-4">Donate Now</a></p>
+                    <p><a href="{{url_for('fund.donation', title=fund[0])}}" class="btn btn-primary rounded-0 px-4">Donate Now</a></p>
                 </div>
             </div>
             <div class="col-md-7">
                 <div class="cause shadow-sm">
-
                     <a href="#" class="cause-link d-block">
                         <img src="../static/images/Giving-Food.jpg" alt="Image" class="img-fluid">
                         <div class="custom-progress-wrap">
-                            <span class="caption">{{ fund.FundGoal }}</span>
+                            <span class="caption">{{ fund[2] }}</span>
                         </div>
                     </a>
-
                     <div class="px-3 pt-3 border-top-0 border border shadow-sm">
                         <h3 class="mb-4"><a href="#">{{ fund[0] }}</a></h3>
                         <div class="border-top border-light border-bottom py-2 d-flex">
                             <div>Donated</div>
                             <div class="ml-auto"><strong class="text-primary">{{ fund[3] }}</strong></div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
 <div class="site-section">
     <div class="container">
+<<<<<<< HEAD
       <div class="d-md-flex cta-20101 align-self-center bg-light p-5">
         <div class=""><h2 class="text-cursive">Show your support for a local or international cause</h2></div>
         <div class="ml-auto"><a href="{{url_for('fund.donation')}}" class="btn btn-primary">Donate Now</a></div>
       </div>
+=======
+        <div class="d-md-flex cta-20101 align-self-center bg-light p-5">
+        <div class=""><h2 class="text-cursive">Show your support for a local or international cause</h2></div>
+        <div class="ml-auto"><a href="{{url_for('fund.donation', title=fund[0])}}" class="btn btn-primary">Donate Now</a></div>
+        </div>
+>>>>>>> 8aaf094293282b8ddc6aee328ee3e31238ad7c6c
     </div>
-  </div>
+</div>
 {% endblock %}

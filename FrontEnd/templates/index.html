@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% block title %}home{% endblock %}
 
 {% block nav %}
 <li class="active"><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
 <li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
-<li><a href="{{ url_for('fund.contact') }}" class="nav-link">Profile</a></li>
 {% if g.user %}
+<li><a href="{{ url_for('fund.contact', UserID=g.user[0]) }}" class="nav-link">Profile</a></li>
 <li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
 {% else %}
 <li><a href="{{ url_for('auth.Signup') }}" class="nav-link">Sign-up</a></li>
@@ -17,7 +18,7 @@
 <div class="owl-carousel-wrapper">
   <div class="box-92819">
     <h1 class="text-white mb-3">Help those in need locally and internationally</h1>
-    <p><a href="{{url_for('fund.donation')}}" class="btn btn-primary py-3 px-4 rounded-0">Donate Now</a></p>
+    <p><a href="{{url_for('fund.donate')}}" class="btn btn-primary py-3 px-4 rounded-0">Donate Now</a></p>
   </div>
   <div class="owl-carousel owl-1 ">
     <div class="ftco-cover-1 overlay" style="background-image: url('static/images/education.jpgprocessalways');"></div>
@@ -27,9 +28,9 @@
 </div>
 <div class="container">
   <div class="feature-29192-wrap d-md-flex" style="margin-top: -20px; position: relative; z-index: 2;">
-    <a href="{{ url_for('fund.fundraisers', fund_name='Testing') }}" class="feature-29192 overlay-danger" style="background-image: url('static/images/food.jpg');">
+    <a class="feature-29192 overlay-danger" style="background-image: url('static/images/food.jpg');">
       <div class="text">
-        <h3 class="text-cursive text-white h1">Testing</h3>
+        <h3 class="text-cursive text-white h1">Disaster</h3>
       </div>
     </a>
     <a class="feature-29192 overlay-success" style="background-image: url('static/images/health2.jpg');">
@@ -88,7 +89,7 @@
   <div class="container">
     <div class="d-md-flex cta-20101 align-self-center bg-light p-5">
       <div class=""><h2 class="text-cursive">Show your support for a local or international cause</h2></div>
-      <div class="ml-auto"><a href="{{url_for('fund.donation')}}" class="btn btn-primary">Donate Now</a></div>
+      <div class="ml-auto"><a href="{{url_for('fund.donate')}}" class="btn btn-primary">Donate Now</a></div>
     </div>
   </div>
 </div>
