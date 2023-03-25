@@ -65,15 +65,22 @@ def Signup():
     if request.method == 'GET':
         return render_template('Sign-up.html')
     elif request.method == 'POST':
+        Fname = request.form.get('fname')
+        Lname = request.form.get('lname')
+        Email = request.form.get('email')
         UserID = request.form.get('username')
         Password = request.form.get('password')
         AuthPassword = request.form.get('auth_password')
-        Email = request.form.get('email')
-        Fname = request.form.get('fname')
-        Lname = request.form.get('lname')
+        if Fname == '' or Lname == '':
+            return render_template('Sign-up.html', no_name='Name Required')
+        if UserID == '':
+            return render_template('Sign-up.html', no_username='User ID Required')
+        if Email == '':
+            return render_template('Sign-up.html', no_email='Email Required')
+        if Password == '':
+            return render_template('Sign-up.html', no_password='Password Required')
         if Password!= AuthPassword:
-            flash('Passwords must match', 'error')
-            return render_template('Sign-up.html')
+            return render_template('Sign-up.html', no_match='Passwords must match')
         get_db().cursor().execute("INSERT IGNORE INTO UserInfo (UserID,Password,Email,FirstName,LastName) VALUES (%s,%s,%s,%s,%s)", (UserID,Password,Email,Fname,Lname))
         get_db().commit()
         return login()
