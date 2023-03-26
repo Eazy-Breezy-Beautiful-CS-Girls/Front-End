@@ -1,3 +1,7 @@
+import json
+import os
+from tkinter import PhotoImage
+import uuid
 from flask import Blueprint
 from flask import flash
 from flask import g
@@ -6,6 +10,7 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
+from base64 import b64encode
 import functools
 from FrontEnd.database import get_db
 
@@ -92,11 +97,38 @@ def contact(UserID):
         with get_db().cursor() as cursor:
             cursor.execute('SELECT * FROM UserInfo WHERE UserID = %s',(UserID))
             user = cursor.fetchone()
-        return render_template('contact.html', user=user)
+        image = b64encode(user[4]).decode('utf-8')
+        return render_template('contact.html', user=user, image=image)
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     email = request.form.get('email')
     bio = request.form.get('bio')
-    get_db().cursor().execute('UPDATE UserInfo SET FirstName = %s, LastName = %s, Email = %s, Bio = %s WHERE UserID = %s',(fname, lname, email, bio, UserID))
+    get_db().cursor().execute('UPDATE IGNORE UserInfo SET FirstName = %s, LastName = %s, Email = %s, Bio = %s WHERE UserID = %s',(fname, lname, email, bio, UserID))
     get_db().commit()
-    return redirect(url_for('fund.contact', UserID=UserID))
+    current_pass = request.form.get('c_pass')
+    new_pass = request.form.get('n_pass')
+    auth_pass = request.form.get('a_pass')
+    if current_pass and new_pass:
+        with get_db().cursor() as cursor:
+            cursor.execute('SELECT Password FROM UserInfo WHERE UserID = %s',(UserID))
+            user = cursor.fetchone()
+            if current_pass == user[0]:
+                if new_pass == auth_pass:
+                    cursor.execute('UPDATE UserInfo SET Password = %s WHERE UserID = %s',(new_pass, UserID))
+                    get_db.commit()
+                elif new_pass != auth_pass:
+                    flash('Passwords do not match','error')
+            elif current_pass != user[0]:
+                flash('Incorrect Password','error')
+    return redirect(url_for('auth.contact', UserID=UserID))
+
+@bp.route('/uploader', methods = ['GET', 'POST'])
+def upload_file():
+   if request.method == 'POST':
+      f = request.files['pic']
+      with open(f.filename, 'rb') as f:
+        binaryData=f.read()
+      get_db().cursor().execute('UPDATE UserInfo SET Pic = %s WHERE UserID = %s',(binaryData, g.user))
+      get_db().commit()
+      return redirect(url_for('auth.contact', UserID=g.user[0]))
+  

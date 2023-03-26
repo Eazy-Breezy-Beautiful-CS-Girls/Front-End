@@ -20,10 +20,6 @@ def index():
         funds = cursor.fetchmany(3)
         return render_template('index.html', funds=funds)
 
-@bp.route('/about', methods=['GET'])
-def about():
-    return render_template('about.html')
-
 @bp.route('/causes', methods=['GET'])
 def causes():
     return render_template('causes.html')
@@ -34,10 +30,6 @@ def fundraisers(fund_name):
         cursor.execute('SELECT * FROM Funds WHERE FundName = %s',(fund_name))
         fund = cursor.fetchone()
         return render_template('fundraisers.html', fund=fund)
-
-@bp.route('/single', methods=['GET'])
-def single():
-    return render_template('single.html')
 
 @bp.route('/form', methods=['GET', 'POST'])
 def form():

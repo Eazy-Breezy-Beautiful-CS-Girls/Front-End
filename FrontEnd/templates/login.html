@@ -31,11 +31,9 @@
     </form>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
-        {% for message in messages %}
-          <div class="alert" style="color: red;">
-            {{ message }}
-          </div>
-        {% endfor %}
+        <div class="alert" style="color: red;">
+          {{ message }}
+        </div>
       {% endif %}
     {% endwith %}
   </div>
