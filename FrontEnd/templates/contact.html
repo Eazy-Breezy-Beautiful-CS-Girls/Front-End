@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% block title %}Profile{% endblock %}
-<script src="{{url_for('static',filename='js/jquery-3.1.1.js')}}"></script>
-<script src="{{url_for('static', filename='js/jquery.ui.widget.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/jquery.fileupload.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/jquery.fileupload-process.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/jquery.fileupload-ui.js')}}"></script>
+
 {% block nav %}
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
 <li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
