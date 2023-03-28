@@ -6,7 +6,7 @@
 <li class="active"><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
 <li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
 {% if g.user %}
-<li><a href="{{ url_for('fund.contact', UserID=g.user[0]) }}" class="nav-link">Profile</a></li>
+<li><a href="{{ url_for('auth.contact', UserID=g.user[0]) }}" class="nav-link">Profile</a></li>
 <li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
 {% else %}
 <li><a href="{{ url_for('auth.Signup') }}" class="nav-link">Sign-up</a></li>
@@ -41,7 +41,7 @@
     <div class="row">
       <!-- make these auto-populated with the funds list of fundraisers with labels: FundName, FundTyp, Goal, Raised-->
       {% for fund in funds %}
-      {% set number = ((fund[3]/fund[2])*100)|int %}
+      {% set number = ((fund[5]/fund[4])*100)|int %}
       <div class="col-md-4">
         <div class="cause shadow-sm">
           <a href="{{ url_for('fund.fundraisers', fund_name=fund[0]) }}" class="cause-link d-block">
@@ -57,7 +57,7 @@
             <h3 class="mb-4">{{ fund[0] }}</h3>
             <div class="border-top border-light border-bottom py-2 d-flex">
               <div>Donated</div>
-              <div class="ml-auto"><strong class="text-primary">${{ fund[3] }}</strong></div>
+              <div class="ml-auto"><strong class="text-primary">${{ fund[4] }}</strong></div>
             </div>             
           </div>
         </div>

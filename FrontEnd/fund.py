@@ -20,10 +20,6 @@ def index():
         funds = cursor.fetchmany(3)
         return render_template('index.html', funds=funds)
 
-@bp.route('/about', methods=['GET'])
-def about():
-    return render_template('about.html')
-
 @bp.route('/causes', methods=['GET'])
 def causes():
     return render_template('causes.html')
@@ -34,26 +30,6 @@ def fundraisers(fund_name):
         cursor.execute('SELECT * FROM Funds WHERE FundName = %s',(fund_name))
         fund = cursor.fetchone()
         return render_template('fundraisers.html', fund=fund)
-
-@bp.route('/contact/<string:UserID>', methods=['GET','POST'])
-@login_required
-def contact(UserID):
-    if request.method == 'GET':
-        with get_db().cursor() as cursor:
-            cursor.execute('SELECT * FROM UserInfo WHERE UserID = %s',(UserID))
-            user = cursor.fetchone()
-        return render_template('contact.html', user=user)
-    fname = request.form.get('fname')
-    lname = request.form.get('lname')
-    email = request.form.get('email')
-    bio = request.form.get('bio')
-    get_db().cursor().execute('UPDATE UserInfo SET FirstName = %s, LastName = %s, Email = %s, Bio = %s WHERE UserID = %s',(fname, lname, email, bio, UserID))
-    get_db().commit()
-    return redirect(url_for('fund.contact', UserID=UserID))
-
-@bp.route('/single', methods=['GET'])
-def single():
-    return render_template('single.html')
 
 @bp.route('/form', methods=['GET', 'POST'])
 def form():

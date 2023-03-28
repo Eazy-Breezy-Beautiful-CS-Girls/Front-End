@@ -6,7 +6,7 @@
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
 <li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
 {% if g.user %}
-<li><a href="{{ url_for('fund.contact', UserID=g.user[0]) }}" class="nav-link">Profile</a></li>
+<li><a href="{{ url_for('auth.contact', UserID=g.user[0]) }}" class="nav-link">Profile</a></li>
 <li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
 {% else %}
 <li class="active"><a href="{{ url_for('auth.Signup') }}" class="nav-link">Sign-up</a></li>
@@ -27,20 +27,25 @@
           <input name="lname" type="text" class="form-control" placeholder="Last Name">
         </div>
       </div>
-      <div class="form-group">
-        <input name="username" type="text" class="form-control" placeholder="Username" required>
+      <div class="form-group row">
+        <span class="alert" style="color: red; margin: 0; padding: 0;">{{no_name}}</span>
       </div>
-      <div class="form-group">
-        <input name="email" type="email" class="form-control" placeholder="Email" required>
-      </div>
-      <div class="form-group">
-        <input name="password" type="password" class="form-control" placeholder="Password" required>
-      </div>
-      <div class="form-group">
-        <input name="auth_password" type="password" class="form-control" placeholder="Re-enter Password" required>
-      </div>
-      <div class="form-control-label">
-        <input type="submit" value="Sign Up" class="btn btn-primary">
+      <div>
+        <div class="form-group row">
+          <input name="username" type="text" class="form-control" placeholder="Username"><span class="alert" style="color: red; margin: 0; padding: 0;">{{no_username}}</span>
+        </div>
+        <div class="form-group row">
+          <input name="email" type="email" class="form-control" placeholder="Email"><span class="alert" style="color: red; margin: 0; padding: 0;">{{no_email}}</span>
+        </div>
+        <div class="form-group row">
+          <input name="password" type="password" class="form-control" placeholder="Password"><span class="alert" style="color: red; margin: 0; padding: 0;">{{no_password}}</span>
+        </div>
+        <div class="form-group row">
+          <input name="auth_password" type="password" class="form-control" placeholder="Re-enter Password"><span class="alert" style="color: red; margin: 0; padding: 0;">{{no_match}}</span>
+        </div>
+        <div class="form-control-label">
+          <input type="submit" value="Sign Up" class="btn btn-primary">
+        </div>
       </div>
     </form>
   </div> 
