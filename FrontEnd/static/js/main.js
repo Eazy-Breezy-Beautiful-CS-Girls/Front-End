@@ -407,3 +407,97 @@ jQuery(document).ready(function($) {
 
 
 });
+
+const tagInput = document.getElementById('tagInput');
+
+tagInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ',') {
+        event.preventDefault();
+        const tagText = tagInput.value.trim();
+        if (tagText) {
+            createTag(tagText);
+            tagInput.value = '';
+        }
+    } else if (event.key === 'Backspace' && tagInput.value === '') {
+        removeLastTag();
+    }
+});
+
+function createTag(text) {
+    const tag = document.createElement('span');
+    tag.classList.add('tag');
+    tag.innerText = text;
+
+    const removeBtn = document.createElement('span');
+    removeBtn.classList.add('remove-btn');
+    removeBtn.innerText = 'x';
+    removeBtn.addEventListener('click', () => {
+        tag.remove();
+    });
+
+    tag.appendChild(removeBtn);
+    tagInput.insertAdjacentElement('beforebegin', tag);
+}
+
+function removeLastTag() {
+    const tags = document.querySelectorAll('.tag');
+    if (tags.length > 0) {
+        tags[tags.length - 1].remove();
+    }
+}
+
+// Add this function to handle the file upload
+async function uploadImage(file) {
+	const formData = new FormData();
+	formData.append("image", file);
+  
+	try {
+	  const response = await fetch("/upload", {
+		method: "POST",
+		body: formData
+	  });
+  
+	  if (response.ok) {
+		const jsonResponse = await response.json();
+		console.log("Image uploaded successfully:", jsonResponse);
+	  } else {
+		console.error("Error uploading image:", response.statusText);
+	  }
+	} catch (error) {
+	  console.error("Error uploading image:", error);
+	}
+  }
+  
+  // Modify the drop event listener to call the uploadImage function
+  dragDropArea.addEventListener("drop", (event) => {
+	event.preventDefault();
+	const files = event.dataTransfer.files;
+	if (files.length === 1) {
+	  const file = files[0];
+	  if (file.type.startsWith("image/")) {
+		uploadImage(file);
+	  } else {
+		alert("Please drop an image file.");
+	  }
+	} else {
+	  alert("Please drop only one file.");
+	}
+  });
+  
+
+  const imageInput = document.getElementById("imageInput");
+
+// Trigger the click event for the hidden input when the drag-and-drop area is clicked
+dragDropArea.addEventListener("click", () => {
+  imageInput.click();
+});
+
+// Handle the selected file when the hidden input changes
+imageInput.addEventListener("change", () => {
+  const file = imageInput.files[0];
+  if (file && file.type.startsWith("image/")) {
+    uploadImage(file);
+  }
+});
+
+

@@ -15,36 +15,45 @@
 {% endblock %}
 
 {% block content %}
-  <div class="site-section bg-image overlay-primary" style="background: linear-gradient(to top, #f3b12e77, #75c8ae8e), url(static/images/oldlady.jpg);">
+  <!-- <div class="site-section bg-image overlay-primary" style="background: linear-gradient(to top, #f3b12e77, #75c8ae8e), url(static/images/oldlady.jpg);"> -->
+    <div class="site-section" style="background-color: white;">
     <div class="container">
       <div class="row align-items-stretch">
         <div class="col-md-6">
-          <img src="static/images/oldlady.jpg" alt="Image" class="img-fluid shadow">
-        </div>
+          <div class="drag-drop-area" id="dragDropArea">Click or drag image here</div>
+      </div>
         <div class="col-md-6">
           <div class="bg-white h-100 p-4 shadow">
             <h3 class="mb-4 text-cursive">Your Fundraiser</h3>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Title" name="title">
+                <input type="file" id="imageInput" accept="image/*" style="display:none;">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Description" name="description">
+                <input type="text" class="form-control" placeholder="Title" name="title">
               </div>
               <div class="form-group">
                 <input type="number" class="form-control" placeholder="$ Goal amount" name="goal">
               </div>
               <div class="form-group">
-                <input type="submit" value="Complete" class="btn btn-primary">
+                <textarea class="form-control-label-desc" placeholder="Description" name="description" rows="1"></textarea>
+            </div>
+            
+            
+              <div class="form-group">
+                <input type="date" class="form-control" name="date">
               </div>
+              <div class="tags-input">
+                <input type="text" id="tagInput" placeholder="Enter tags...">
+            </div>
+            <script src="main.js"></script>
+            <div class="form-group">
+              <input type="submit" value="Complete" class="btn btn-primary submit-button">
+          </div>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-<<<<<<< HEAD
 {% endblock %}
-=======
-{% endblock %}
->>>>>>> ea8a27c483ad01abd37542d5b497bdfdd39699f0
