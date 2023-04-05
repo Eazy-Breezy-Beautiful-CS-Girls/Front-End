@@ -494,8 +494,9 @@ h1, h2, h3, h4, h5,
       width: 100%;
       background: #f3b02e(33, 50, 59, 0.9); }
   .bg-image.overlay-primary {
-    position: relative; }
-    .bg-image.overlay-primary:after {
+    position: relative;
+    }
+    .bg-image.overlay-primary::after {
       position: absolute;
       content: "";
       top: 0;
@@ -505,15 +506,6 @@ h1, h2, h3, h4, h5,
       z-index: 0;
       width: 100%;
       }
-
-  .donationpic {
-    background: linear-gradient(to top, #f3b12e77, #75c8ae8e);
-  }
-
-::after {}
-  .bg-image > .container {
-    position: relative;
-    z-index: 1; }
 
 @media (max-width: 991.98px) {
   .img-md-fluid {
