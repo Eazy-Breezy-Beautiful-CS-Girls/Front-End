@@ -323,9 +323,13 @@ body {
   color: #364d59 !important;
   font-weight: 300;
   font-size: 1rem;
-  background-color: #fff; }
+  position: absolute;
+  z-index: -100;
+  background-color: #fff; 
+  width:100%;
+  height: 100%;
+}
   body:before {
-    position: absolute;
     content: "";
     left: 0;
     right: 0;
@@ -336,8 +340,7 @@ body {
     -o-transition: .3s all ease;
     transition: .3s all ease;
     opacity: 0;
-    visibility: hidden;
-    z-index: 399; }
+    visibility: hidden;}
   body.offcanvas-menu {
     position: relative; }
     body.offcanvas-menu:before {
@@ -483,7 +486,7 @@ h1, h2, h3, h4, h5,
   background-attachment: fixed; }
   .bg-image.overlay {
     position: relative; }
-    .bg-image.overlay:after {
+    .bg-image.overlay::after {
       position: absolute;
       content: "";
       top: 0;
@@ -506,6 +509,14 @@ h1, h2, h3, h4, h5,
       z-index: 0;
       width: 100%;
       }
+      .donationpic {
+        background: linear-gradient(to top, #f3b12e77, #75c8ae8e);
+      }
+    
+      .bg-image > .container {
+        position: relative;
+        z-index: 1; }
+    
 
 @media (max-width: 991.98px) {
   .img-md-fluid {
