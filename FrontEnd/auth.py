@@ -97,7 +97,8 @@ def contact(UserID):
         with get_db().cursor() as cursor:
             cursor.execute('SELECT * FROM UserInfo WHERE UserID = %s',(UserID))
             user = cursor.fetchone()
-        image = b64encode(user[4]).decode('utf-8')
+        if type(user[4]) != NoneType:
+            image = b64encode(user[4]).decode('utf-8')
         return render_template('contact.html', user=user, image=image)
     fname = request.form.get('fname')
     lname = request.form.get('lname')
