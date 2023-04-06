@@ -128,10 +128,12 @@ def contact(UserID):
 @bp.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
    if request.method == 'POST':
-      f = request.files['pic']
-      with open(f.filename, 'rb') as f:
+      upload = request.files['pic']
+      upload.save(upload.filename)
+      with open(upload.filename, 'rb') as f:
         binaryData=f.read()
       get_db().cursor().execute('UPDATE UserInfo SET Pic = %s WHERE UserID = %s',(binaryData, g.user))
       get_db().commit()
+      os.remove(upload.filename)
       return redirect(url_for('auth.contact', UserID=g.user[0]))
   

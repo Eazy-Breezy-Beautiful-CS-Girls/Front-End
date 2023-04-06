@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-lg-8 mb-5" >
         <h3 class="text-cursive mb-4">Profile Info</h3>
-        <form class="form" method="POST" enctype="multipart/form-data" action="{{url_for('auth.upload_file')}}">
+        <form method="POST" enctype="multipart/form-data" action="{{url_for('auth.upload_file')}}">
           <div class="row">
             <div class="col" style="max-width: 310px;">
               {% if image %}
