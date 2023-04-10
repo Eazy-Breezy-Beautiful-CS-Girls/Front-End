@@ -1,7 +1,6 @@
-import json
 import os
-from tkinter import PhotoImage
-import uuid
+import functools
+
 from flask import Blueprint
 from flask import flash
 from flask import g
@@ -11,7 +10,6 @@ from flask import request
 from flask import session
 from flask import url_for
 from base64 import b64encode
-import functools
 from FrontEnd.database import get_db
 
 bp = Blueprint("auth", __name__, url_prefix="/auth")

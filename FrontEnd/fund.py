@@ -50,10 +50,11 @@ def donation(title=''):
     if request.method == 'POST':
         title = request.form.get('title')
         amount = request.form.get('amount')
+        comment = request.form.get('comment')
         get_db().cursor().execute('UPDATE Funds SET FundRaised = FundRaised+%s WHERE FundName = %s',(amount,title))
         get_db().commit()
         if g.user:
-            get_db().cursor().execute('INSERT IGNORE INTO Donations (FundName, UserID, DonoAmount, DonoTime) VALUES (%s,%s,%s,%s)',(title,g.user,amount,datetime.datetime.now()))
+            get_db().cursor().execute('INSERT INTO Donations (FundName, UserID, DonoAmount, DonoTime, DonoComment) VALUES (%s,%s,%s,%s,%s)',(title,g.user,amount,datetime.datetime.now(),comment))
             get_db().commit()
         return redirect(url_for('index'))
     if title == '':
@@ -65,10 +66,11 @@ def donate():
     if request.method == 'POST':
         title = request.form.get('title')
         amount = request.form.get('amount')
+        comment = request.form.get('comment')
         get_db().cursor().execute('UPDATE Funds SET FundRaised = FundRaised+%s WHERE FundName = %s',(amount,title))
         get_db().commit()
         if g.user:
-            get_db().cursor().execute('INSERT IGNORE INTO Donations (FundName, UserID, DonoAmount, DonoTime) VALUES (%s,%s,%s,%s)',(title,g.user,amount,datetime.datetime.now()))
+            get_db().cursor().execute('INSERT INTO Donations (FundName, UserID, DonoAmount, DonoTime, DonoComment) VALUES (%s,%s,%s,%s,%s)',(title,g.user,amount,datetime.datetime.now(), comment))
             get_db().commit()
         return redirect(url_for('index'))
     return render_template('donation.html')

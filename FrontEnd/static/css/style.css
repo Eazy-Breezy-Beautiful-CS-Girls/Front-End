@@ -30,7 +30,6 @@ html {
 
 input[type="text"] {
   flex: 1;
-  border: none;
   outline: none;
 }
 
@@ -2030,9 +2029,8 @@ h1, h2, h3, h4, h5,
   display: block;
   background: #fafafa;
   color: #636363;
-  border: none;
   border-radius: 0;
-  border-bottom: 1px solid #757575;	
+  border-bottom: 1px solid #757575 !important;	
 }
 .credit-card .card-details input[type="text"]:focus { outline: none; }
 
