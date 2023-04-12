@@ -1,3 +1,4 @@
+import datetime
 from flask import Blueprint
 from flask import flash
 from flask import g
@@ -6,7 +7,6 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
-import datetime
 from FrontEnd.auth import login_required
 
 from FrontEnd.database import get_db
@@ -40,8 +40,10 @@ def form():
         description = request.form.get('description')
         goal = int(request.form.get('goal'))
         user_id = g.user[0]
-        get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundType, FundGoal, FundRaised) VALUES (%s, %s, %s, 0);\
-                                  INSERT IGNORE INTO UserFundLink (%s,%s);', (title,description,goal,user_id,title))
+        end_date = request.form.get('date')
+        start_date = datetime.now()
+        get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundEndDate, FundDesc, FundGoal, FundRaised, FundStartDate) VALUES (%s, %s, %s, %s, 0, %s);\
+                                  INSERT IGNORE INTO UserFundLink (UserId,FundName) VALUES (%s,%s);', (title,end_date,description,goal,start_date,user_id,title))
         get_db().commit()
         return redirect(url_for('index'))
 
