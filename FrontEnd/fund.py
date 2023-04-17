@@ -56,4 +56,5 @@ def form():
                                   INSERT IGNORE INTO UserFundLink (UserId,FundName) VALUES (%s,%s);', (title,end_date,description,goal,start_date,user_id,title))
         get_db().commit()
         return redirect(url_for('index'))
+
         
