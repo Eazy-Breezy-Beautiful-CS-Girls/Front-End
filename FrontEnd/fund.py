@@ -24,8 +24,18 @@ def index():
 def causes():
     return render_template('causes.html')
 
-@bp.route('/fundraisers/<string:fund_name>', methods=['GET'])
+@bp.route('/fundraisers/<string:fund_name>', methods=['GET','POST'])
 def fundraisers(fund_name):
+    if request.method == 'POST':
+        title = fund_name
+        amount = request.form.get('amount')
+        comment = request.form.get('comment')
+        get_db().cursor().execute('UPDATE Funds SET FundRaised = FundRaised+%s WHERE FundName = %s',(amount,title))
+        get_db().commit()
+        if g.user:
+            get_db().cursor().execute('INSERT INTO Donations (FundName, UserID, DonoAmount, DonoTime, DonoComment) VALUES (%s,%s,%s,%s,%s)',(title,g.user,amount,datetime.datetime.now(),comment))
+            get_db().commit()
+        return redirect(url_for('index'))
     with get_db().cursor() as cursor:
         cursor.execute('SELECT * FROM Funds WHERE FundName = %s',(fund_name))
         fund = cursor.fetchone()
@@ -46,34 +56,4 @@ def form():
                                   INSERT IGNORE INTO UserFundLink (UserId,FundName) VALUES (%s,%s);', (title,end_date,description,goal,start_date,user_id,title))
         get_db().commit()
         return redirect(url_for('index'))
-
-@bp.route('/donation/<string:title>', methods=['GET', 'POST'])
-def donation(title=''):
-    if request.method == 'POST':
-        title = request.form.get('title')
-        amount = request.form.get('amount')
-        comment = request.form.get('comment')
-        get_db().cursor().execute('UPDATE Funds SET FundRaised = FundRaised+%s WHERE FundName = %s',(amount,title))
-        get_db().commit()
-        if g.user:
-            get_db().cursor().execute('INSERT INTO Donations (FundName, UserID, DonoAmount, DonoTime, DonoComment) VALUES (%s,%s,%s,%s,%s)',(title,g.user,amount,datetime.datetime.now(),comment))
-            get_db().commit()
-        return redirect(url_for('index'))
-    if title == '':
-        return render_template('donation.html')
-    return render_template('donation.html', title=title)
-
-@bp.route('/donation', methods=['GET', 'POST'])
-def donate():
-    if request.method == 'POST':
-        title = request.form.get('title')
-        amount = request.form.get('amount')
-        comment = request.form.get('comment')
-        get_db().cursor().execute('UPDATE Funds SET FundRaised = FundRaised+%s WHERE FundName = %s',(amount,title))
-        get_db().commit()
-        if g.user:
-            get_db().cursor().execute('INSERT INTO Donations (FundName, UserID, DonoAmount, DonoTime, DonoComment) VALUES (%s,%s,%s,%s,%s)',(title,g.user,amount,datetime.datetime.now(), comment))
-            get_db().commit()
-        return redirect(url_for('index'))
-    return render_template('donation.html')
         
