@@ -500,4 +500,33 @@ imageInput.addEventListener("change", () => {
   }
 });
 
+function validateImage(input) {
+	if (input.files && input.files[0]) {
+	  const file = input.files[0];
+	  const fileType = file["type"];
+	  const validImageTypes = ["image/gif", "image/jpeg", "image/png", "image/svg+xml", "image/webp"];
+	  if (validImageTypes.includes(fileType)) {
+		const reader = new FileReader();
+		reader.onload = function(e) {
+		  const preview = document.getElementById("dragDropArea");
+		  preview.style.backgroundImage = `url(${e.target.result})`;
+		  preview.style.backgroundSize = "cover";
+		  preview.style.backgroundPosition = "center";
+		  preview.innerHTML = "";
+		};
+		reader.readAsDataURL(file);
+	  } else {
+		alert("Please choose a valid image file (jpg, png, gif, svg, or webp).");
+		input.value = "";
+	  }
+	}
+  }
+
+  
+
+  
+  
+  
+  
+
 
