@@ -15,38 +15,64 @@
 {% endblock %}
 
 {% block content %}
-<div class="owl-carousel-wrapper">
-    <div class="box-92819">
-        <h1 class="text-white mb-3">{{ fund[0] }}</h1>
-        <p class="lead text-white">{{ fund[1] }}</p>
-    </div>
-    <div class="ftco-cover-1 overlay" style="background-image: url('../static/images/Homeless.jpg');"></div>
-</div>
 <div class="site-section">
     <div class="container">
         <div class="row mb-5 align-items-st">
             <div class="col-md-5">
                 <div class="heading-20219">
-                    <h2 class="title text-cursive mb-4">{{ fund[0] }}</h2>
+                    <div class="border-top border-light border-bottom py-2 d-flex">
+                        <div>Donations made so far</div>
+                        <div class="ml-auto"><strong class="text-primary">{{ fund[5] }}</strong></div>
+                    </div>
+                    <img src="../static/images/Giving-Food.jpg" alt="Image" class="img-fluid">
+                    <h2 class="title mb-4">{{ fund[0] }}</h2>
                     <p>{{ fund[3] }}</p>
-                    <p><a href="{{url_for('fund.donation', title=fund[0])}}" class="btn btn-primary rounded-0 px-4">Donate Now</a></p>
                 </div>
             </div>
             <div class="col-md-7">
                 <div class="cause shadow-sm">
-                    <a href="#" class="cause-link d-block">
-                        <img src="../static/images/Giving-Food.jpg" alt="Image" class="img-fluid">
-                        <div class="custom-progress-wrap">
-                            <span class="caption">{{ fund[4] }}</span>
+                    <form method="POST">
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Your donation amount" name="amount">
                         </div>
-                    </a>
-                    <div class="px-3 pt-3 border-top-0 border border shadow-sm">
-                        <h3 class="mb-4"><a href="#">{{ fund[0] }}</a></h3>
-                        <div class="border-top border-light border-bottom py-2 d-flex">
-                            <div>Donated</div>
-                            <div class="ml-auto"><strong class="text-primary">{{ fund[5] }}</strong></div>
+                        <div class="form-group">
+                          <textarea type="text" class="form-control" placeholder="Comment (optional)" name="comment"></textarea>
                         </div>
-                    </div>
+                          <div class="card-details">
+                            <h3 class="text-mb-4">Credit Card Details</h3>
+                            <div class="row">
+                              <div class="form-group col-sm-7">
+                               <div class="inner-addon right-addon">
+                                <label for="card-holder">Card Holder</label>
+                                <i class="far fa-user"></i>
+                                <input id="card-holder" type="text" class="form-control" placeholder="Name">
+                               </div>	
+                              </div>
+                              <div class="form-group col-sm-5">
+                                <label for="">Expiration Date</label>
+                                <div class="input-group expiration-date">
+                                  <input type="text" class="form-control" placeholder="MM" maxlength="2" minlength="2" pattern="[0-9]{2}">
+                                  <span class="date-separator">/</span>
+                                  <input type="text" class="form-control" placeholder="YY" maxlength="2" minlength="2" pattern="[0-9]{2}">
+                                </div>
+                              </div>
+                              <div class="form-group col-sm-8">
+                               <div class="inner-addon right-addon">
+                                <label for="card-number">Card Number</label>
+                                <i class="far fa-credit-card"></i>
+                                <input id="card-number" type="text" class="form-control" placeholder="Card Number" maxlength="16" minlength="16" pattern="[0-9]{16}">
+                               </div>	
+                              </div>
+                              <div class="form-group col-sm-4">
+                                <label for="cvc">CVC</label>
+                                <input id="cvc" type="text" class="form-control" placeholder="CVC" maxlength="3" minlength="3" pattern="[0-9]{3}">
+                              </div>
+                              <div class="form-group col-sm-12">
+                                  <input type="submit" class="btn btn-primary btn-block">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
                 </div>
             </div>
         </div>

@@ -18,7 +18,6 @@
 <div class="owl-carousel-wrapper">
   <div class="box-92819">
     <h1 class="text-white mb-3">Help those in need locally and internationally</h1>
-    <p><a href="{{url_for('fund.donate')}}" class="btn btn-primary py-3 px-4 rounded-0">Donate Now</a></p>
   </div>
   <div class="owl-carousel owl-1 ">
     <div class="ftco-cover-1 overlay" style="background-image: url('static/images/education.jpgprocessalways');"></div>
@@ -44,7 +43,7 @@
       {% set number = ((fund[5]/fund[4])*100)|int %}
       <div class="col-md-4">
         <div class="cause shadow-sm">
-          <a href="{{ url_for('fund.fundraisers', fund_name=fund[0]) }}" class="cause-link d-block">
+          <a href="{{ url_for('fund.fundraisers', fund_name = fund[0])}}"  class="cause-link d-block">
             <img src="static/images/Homeless.jpg" alt="Image" class="img-fluid">
             <div class="custom-progress-wrap">
               <span class="caption">{{ number }}% complete</span>
@@ -57,6 +56,10 @@
             <h3 class="mb-4">{{ fund[0] }}</h3>
             <div class="border-top border-light border-bottom py-2 d-flex">
               <div>Donated</div>
+              <div class="ml-auto"><strong class="text-primary">${{ fund[5] }}</strong></div><br>
+            </div>
+            <div class="border-top border-light border-bottom py-2 d-flex">
+              <div>Goal</div>
               <div class="ml-auto"><strong class="text-primary">${{ fund[4] }}</strong></div>
             </div>             
           </div>
