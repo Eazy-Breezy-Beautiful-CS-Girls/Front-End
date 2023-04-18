@@ -39,7 +39,9 @@ def fundraisers(fund_name):
     with get_db().cursor() as cursor:
         cursor.execute('SELECT * FROM Funds WHERE FundName = %s',(fund_name))
         fund = cursor.fetchone()
-        return render_template('fundraisers.html', fund=fund)
+        cursor.execute('SELECT * FROM Images WHERE FundName = %s',(fund_name))
+        images = cursor.fetchall()
+        return render_template('fundraisers.html', fund=fund, images=images)
 
 @bp.route('/form', methods=['GET', 'POST'])
 def form():
