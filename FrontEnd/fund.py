@@ -70,7 +70,6 @@ def form():
             cursor.execute('INSERT IGNORE INTO UserFundLink (UserId,FundName) VALUES (%s,%s)', (user_id, title))
             cursor.execute('INSERT INTO Images (FundName, picture) VALUES (%s, %s)', (title, binaryData))
             get_db().commit()
-
         # Remove the saved image file
         os.remove(upload.filename)
         return redirect(url_for('index'))
