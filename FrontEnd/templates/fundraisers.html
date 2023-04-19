@@ -16,6 +16,7 @@
 
 {% block content %}
 <div class="site-section">
+  <div class="site-section">
     <div class="container">
         <div class="row mb-5 align-items-st">
             <div class="col-md-5">
@@ -24,11 +25,10 @@
                         <div>Donations made so far</div>
                         <div class="ml-auto"><strong class="text-primary">{{ fund[5] }}</strong></div>
                     </div>
-                    <div class="owl-carousel-wrapper-2">
-                      <div class="owl-carousel owl-2 ">
-                        {% for image in images %}
-                        <img src="data:image/jpeg;base64,{{ image }}" style="height: 100%; object-fit:contain; margin-left: 50%; transform: translateX(-50%);"/>
-                        {% endfor %}
+                    <div>
+                      {% if images %}
+                      <img src="data:image/jpeg;base64,{{ images[0] }}" style="height: 100%; object-fit:contain; margin-left: 50%; transform: translateX(-50%);"/>
+                      {% endif %}
                     </div>
                     <h2 class="title mb-4">{{ fund[0] }}</h2>
                     <p>{{ fund[3] }}</p>

@@ -8,6 +8,7 @@ from flask import request
 from flask import session
 from flask import url_for
 from FrontEnd.auth import login_required
+import os
 
 from FrontEnd.database import get_db
 
@@ -44,6 +45,7 @@ def fundraisers(fund_name):
         return render_template('fundraisers.html', fund=fund, images=images)
 
 @bp.route('/form', methods=['GET', 'POST'])
+@login_required
 def form():
     if request.method == 'GET':
         return render_template('form.html')
@@ -53,10 +55,21 @@ def form():
         goal = int(request.form.get('goal'))
         user_id = g.user[0]
         end_date = request.form.get('date')
-        start_date = datetime.now()
-        get_db().cursor().execute('INSERT IGNORE INTO Funds (FundName, FundEndDate, FundDesc, FundGoal, FundRaised, FundStartDate) VALUES (%s, %s, %s, %s, 0, %s);\
-                                  INSERT IGNORE INTO UserFundLink (UserId,FundName) VALUES (%s,%s);', (title,end_date,description,goal,start_date,user_id,title))
-        get_db().commit()
-        return redirect(url_for('index'))
-
+        start_date = datetime.datetime.now()
         
+        # Save the image
+        upload = request.files['Picture']
+        upload.save(upload.filename)
+        with open(upload.filename, 'rb') as f:
+            binaryData = f.read()
+        
+        # Insert fundraiser information and image into the database
+        with get_db().cursor() as cursor:
+            cursor.execute('INSERT IGNORE INTO Funds (FundName, FundEndDate, FundDesc, FundGoal, FundRaised, FundStart) VALUES (%s, %s, %s, %s, 0, %s)', (title, end_date, description, goal, start_date))
+            cursor.execute('INSERT IGNORE INTO UserFundLink (UserId,FundName) VALUES (%s,%s)', (user_id, title))
+            cursor.execute('INSERT INTO Images (FundName, picture) VALUES (%s, %s)', (title, binaryData))
+            get_db().commit()
+
+        # Remove the saved image file
+        os.remove(upload.filename)
+        return redirect(url_for('index'))
