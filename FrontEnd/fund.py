@@ -56,11 +56,12 @@ def form():
         user_id = g.user[0]
         end_date = request.form.get('date')
         start_date = datetime.datetime.now()
+        tags = request.form.get('tags')
         
         
         # Insert fundraiser information and image into the database
         with get_db().cursor() as cursor:
-            cursor.execute('INSERT IGNORE INTO Funds (FundName, FundEndDate, FundDesc, FundGoal, FundRaised, FundStart) VALUES (%s, %s, %s, %s, 0, %s)', (title, end_date, description, goal, start_date))
+            cursor.execute('INSERT IGNORE INTO Funds (FundName, FundEndDate, FundDesc, FundGoal, FundRaised, FundStart, FundTags) VALUES (%s, %s, %s, %s, 0, %s, %s)', (title, end_date, description, goal, start_date, tags))
             cursor.execute('INSERT IGNORE INTO UserFundLink (UserId,FundName) VALUES (%s,%s)', (user_id, title))
             # Save the image
             upload = request.files.getlist('Picture')
