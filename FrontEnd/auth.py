@@ -134,4 +134,5 @@ def upload_file():
       get_db().commit()
       os.remove(upload.filename)
       return redirect(url_for('auth.contact', UserID=g.user[0]))
+
   
