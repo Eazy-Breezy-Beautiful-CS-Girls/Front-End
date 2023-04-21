@@ -42,7 +42,11 @@ def fundraisers(fund_name):
         fund = cursor.fetchone()
         cursor.execute('SELECT picture FROM Images WHERE FundName = %s',(fund_name))
         images = cursor.fetchall()
-    return render_template('fundraisers.html', fund=fund, images=images)
+        cursor.execute('SELECT UserID,DonoComment FROM Donations WHERE FundName = %s', (fund_name))
+        comments = cursor.fetchall()
+
+
+    return render_template('fundraisers.html', fund=fund, images=images, comments=comments)
 
 @bp.route('/form', methods=['GET', 'POST'])
 @login_required

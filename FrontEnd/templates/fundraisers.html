@@ -28,7 +28,7 @@
                     <div>
                       <div class="owl-carousel owl-1 ">
                       {% for image in images %}
-                      <div class="ftco-cover-1 overlay" style="background-image: url(data:image/jpeg;base64,{{ image[0] }}), url(data:image/png;base64,{{ image[0] }};"></div>
+                      <div class="ftco-cover-1 overlay" style="background-image: url(data:image/jpeg;base64,{{ image[0] }}), url(data:image/png;base64,{{ image[0] }});"></div>
                       <!-- <img class="ftco-cover-1 overlay" src="data:image/jpeg;base64,{{ image[0] }}" style="height: 100%; object-fit:contain; margin-left: 50%; transform: translateX(-50%);"/> -->
                       {% endfor %}  
                       </div>
@@ -85,6 +85,28 @@
                 </div>
             </div>
         </div>
+        
+        <div class="row mb-5 align-items-st">
+          {% for comment in comments %}
+          <div class="container">
+            
+            <div class="row">
+              <h2>{{comment[0]}}</h2>
+
+            </div>
+
+            <div class="row">
+              <p>{{comment[1]}}</p>
+
+            </div>
+
+
+
+          </div> 
+          {% endfor %}
+          
+        </div>
     </div>
+</div>
 </div>
 {% endblock %}
