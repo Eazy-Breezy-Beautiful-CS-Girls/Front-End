@@ -19,20 +19,14 @@
   <div class="site-section">
     <div class="container">
         <div class="row mb-5 align-items-st">
-<<<<<<< HEAD
             <div class="col-md-7">
-=======
-            <div class="col-md-5">
->>>>>>> bd3e4b8d351a1ab900cc16d37cebf09ba65b544c
                 <div class="heading-20219">
                     <div>
                       <div class="owl-carousel owl-1 ">
                       {% for image in images %}
-                      <div class="ftco-cover-1 overlay" style="background-image: url(data:image/jpeg;base64,{{ image[0] }}), url(data:image/png;base64,{{ image[0] }});"></div>
-                      <!-- <img class="ftco-cover-1 overlay" src="data:image/jpeg;base64,{{ image[0] }}" style="height: 100%; object-fit:contain; margin-left: 50%; transform: translateX(-50%);"/> -->
+                        <div class="ftco-cover-1 overlay" style="background-image: url(data:image/jpeg;base64,{{ image }}), url(data:image/png;base64,{{ image }});"></div>
                       {% endfor %}  
                       </div>
-                      
                     </div>
                     <h2 class="title mb-4">{{ fund[0] }}</h2>
                     <p>{{ fund[3] }}</p>

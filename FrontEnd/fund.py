@@ -1,3 +1,4 @@
+from base64 import b64encode
 import datetime
 from flask import Blueprint
 from flask import flash
@@ -41,7 +42,10 @@ def fundraisers(fund_name):
         cursor.execute('SELECT * FROM Funds WHERE FundName = %s',(fund_name))
         fund = cursor.fetchone()
         cursor.execute('SELECT picture FROM Images WHERE FundName = %s',(fund_name))
-        images = cursor.fetchall()
+        imagesFetch = cursor.fetchall()
+        images=list()
+        for image in imagesFetch:
+            images.append(b64encode(image[0]).decode('utf-8'))
         cursor.execute('SELECT UserID,DonoComment FROM Donations WHERE FundName = %s', (fund_name))
         comments = cursor.fetchall()
 
