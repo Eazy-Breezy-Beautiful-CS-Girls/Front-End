@@ -40,9 +40,13 @@ def fundraisers(fund_name):
     with get_db().cursor() as cursor:
         cursor.execute('SELECT * FROM Funds WHERE FundName = %s',(fund_name))
         fund = cursor.fetchone()
-        cursor.execute('SELECT * FROM Images WHERE FundName = %s',(fund_name))
+        cursor.execute('SELECT picture FROM Images WHERE FundName = %s',(fund_name))
         images = cursor.fetchall()
-        return render_template('fundraisers.html', fund=fund, images=images)
+        cursor.execute('SELECT UserID,DonoComment FROM Donations WHERE FundName = %s', (fund_name))
+        comments = cursor.fetchall()
+
+
+    return render_template('fundraisers.html', fund=fund, images=images, comments=comments)
 
 @bp.route('/form', methods=['GET', 'POST'])
 @login_required
@@ -58,19 +62,20 @@ def form():
         start_date = datetime.datetime.now()
         tags = request.form.get('tags')
         
-        # Save the image
-        upload = request.files['Picture']
-        upload.save(upload.filename)
-        with open(upload.filename, 'rb') as f:
-            binaryData = f.read()
         
         # Insert fundraiser information and image into the database
         with get_db().cursor() as cursor:
             cursor.execute('INSERT IGNORE INTO Funds (FundName, FundEndDate, FundDesc, FundGoal, FundRaised, FundStart, FundTags) VALUES (%s, %s, %s, %s, 0, %s, %s)', (title, end_date, description, goal, start_date, tags))
             cursor.execute('INSERT IGNORE INTO UserFundLink (UserId,FundName) VALUES (%s,%s)', (user_id, title))
-            cursor.execute('INSERT INTO Images (FundName, picture) VALUES (%s, %s)', (title, binaryData))
-            get_db().commit()
-
-        # Remove the saved image file
-        os.remove(upload.filename)
-        return redirect(url_for('index'))
+            # Save the image
+            upload = request.files.getlist('myFile')
+            for image in upload:
+                image.save(image.filename)
+                with open(image.filename, 'rb') as f:
+                    binaryData = f.read()
+                cursor.execute('INSERT INTO Images (FundName, picture) VALUES (%s, %s)', (title, binaryData))
+                get_db().commit()
+                # Remove the saved image file
+                os.remove(image.filename)
+        
+        return redirect(url_for('fund.fundraisers', fund_name = title))

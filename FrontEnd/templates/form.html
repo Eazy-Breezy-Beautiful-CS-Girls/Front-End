@@ -2,6 +2,8 @@
 {% extends 'base.html' %}
 {% block title %}form{% endblock %}
 
+<link rel="stylesheet" href="main.css">
+
 {% block nav %}
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
 <li class="active"><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
@@ -20,34 +22,47 @@
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-md-6">
-            <div class="drag-drop-area" id="dragDropArea">
-              Click or drag image here
+            
+            
+              
+              
               <div class="image-carousel owl-carousel" id="imageCarousel">
                 <!-- Images will be appended here by JavaScript -->
               </div>
-            </div>
+            
             <div class="form-group">
-              <label for="imageInput" class="btn btn-primary submit-button">Choose File</label>
+              <div>
+
+                <span class="drop-zone__prompt">Drop File Here or Click to Upload</span>
+                <br>
+
+                <input type="file" multiple name="myFile" class="drop-zone__input" id="dragDrop" onchange="showPreview(event);">
+              </div>
+              <br>
+              <br>
+              <div class="preview">
+                <img id="file-ip-1-preview" style="height: 400px; width: 400px;">
+              </div>  
             </div>
           </div>
           <div class="col-md-6">
             <div class="bg-white h-100 p-4 shadow">
               <h3 class="mb-4 text-cursive">Your Fundraiser</h3>
               <div class="form-group">
-                <input type="file" name="Picture" id="imageInput" style="display:none;" onchange="validateImage(this);">
+                <input type="file" name="Picture" id="imageInput" style="display:none;" onchange="validateImage(this);" multiple>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Title" name="title">
+                <input type="text" class="form-control" placeholder="Title" name="title" required>
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" placeholder="$ Goal amount" name="goal">
+                <input type="number" class="form-control" placeholder="$ Goal amount" name="goal" required>
               </div>
               <div class="form-group">
-                <textarea class="form-control-label-desc" placeholder="Description" name="description" rows="1"></textarea>
+                <textarea class="form-control-label-desc" placeholder="Description" name="description" rows="1" required></textarea>
               </div>
               <h5 class="mb-4 text-cursive m-r-top" >End date</h5>
               <div class="form-group">
-                <input type="date" placeholder="End date" class="form-control" name="date">
+                <input type="date" placeholder="End date" class="form-control" name="date" required>
               </div>
               <div class="tags-input">
                 <input type="text" id="tagInput" placeholder="Enter tags..." name="tags">
@@ -66,3 +81,4 @@
 {% block scripts %}
   <script src="main.js"></script>
 {% endblock %}
+
