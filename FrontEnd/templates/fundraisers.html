@@ -4,7 +4,7 @@
 
 {% block nav %}
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
-<li class="active"><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
+<li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
 {% if g.user %}
 <li><a href="{{ url_for('auth.contact', UserID=g.user[0]) }}" class="nav-link">Profile</a></li>
 <li><a href="{{ url_for('auth.logout') }}" class="nav-link">logout</a></li>
@@ -15,23 +15,22 @@
 {% endblock %}
 
 {% block content %}
-<div class="site-section">
+<div class="owl-carousel-wrapper">
+  <div class="owl-carousel owl-1 w-full">
+  {% for image in images %}
+    <div class="ftco-cover-1" style="background-image: url(data:image/jpeg;base64,{{ image }}), url(data:image/png;base64,{{ image }});"></div>
+  {% endfor %}
+  </div>
+</div>
   <div class="site-section">
     <div class="container">
         <div class="row mb-5 align-items-st">
             <div class="col-md-7">
-                <div class="heading-20219">
-                    <div>
-                      <div class="owl-carousel owl-1 ">
-                      {% for image in images %}
-                        <div class="ftco-cover-1" style="background-image: url(data:image/jpeg;base64,{{ image }}), url(data:image/png;base64,{{ image }});"></div>
-                      {% endfor %}  
-                      </div>
-                    </div>
-                    <h2 class="title mb-4">{{ fund[0] }}</h2>
-                    <p>{{ fund[3] }}</p>
-                    <p>{{ fund[7] }}</p>
-                </div>
+              <div class="heading-20219">
+                <h2 class="title mb-4">{{ fund[0] }}</h2>
+                <p>{{ fund[3] }}</p>
+                <p>{{ fund[7] }}</p>
+              </div>
             </div>
             <div class="col-md-7">
                 <div class="cause shadow-sm">
@@ -102,6 +101,5 @@
           
         </div>
     </div>
-</div>
 </div>
 {% endblock %}
