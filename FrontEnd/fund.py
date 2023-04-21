@@ -64,7 +64,7 @@ def form():
             cursor.execute('INSERT IGNORE INTO Funds (FundName, FundEndDate, FundDesc, FundGoal, FundRaised, FundStart, FundTags) VALUES (%s, %s, %s, %s, 0, %s, %s)', (title, end_date, description, goal, start_date, tags))
             cursor.execute('INSERT IGNORE INTO UserFundLink (UserId,FundName) VALUES (%s,%s)', (user_id, title))
             # Save the image
-            upload = request.files.getlist('Picture')
+            upload = request.files.getlist('myFile')
             for image in upload:
                 image.save(image.filename)
                 with open(image.filename, 'rb') as f:

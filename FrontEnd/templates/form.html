@@ -23,21 +23,7 @@
         <div class="row align-items-stretch">
           <div class="col-md-6">
             
-             
-            <div class="preview">
-              <img id="file-ip-1-preview" style="height: 400px; width: 400px;">
-            </div>  
-
-
-
-              <!--MY Attempted edit-->
-
-              <div class="drop-zone">
-                <span class="drop-zone__prompt">Drop File Here or Click to Upload</span>
-                <br>
-                <input type="file" name="myFile" class="drop-zone__input" onchange="showPreview(event);">
-              </div>
-
+            
               
               
               <div class="image-carousel owl-carousel" id="imageCarousel">
@@ -45,9 +31,18 @@
               </div>
             
             <div class="form-group">
-              
-              
-              <label for="imageInput" class="btn btn-primary submit-button">Choose File</label>
+              <div>
+
+                <span class="drop-zone__prompt">Drop File Here or Click to Upload</span>
+                <br>
+
+                <input type="file" multiple name="myFile" class="drop-zone__input" id="dragDrop" onchange="showPreview(event);">
+              </div>
+              <br>
+              <br>
+              <div class="preview">
+                <img id="file-ip-1-preview" style="height: 400px; width: 400px;">
+              </div>  
             </div>
           </div>
           <div class="col-md-6">
