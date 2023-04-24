@@ -71,43 +71,72 @@ html {
 	text-align: center;
 }
 
+
+
+
 .tags-input {
-  display: flex;
-  flex-wrap: wrap;
-  min-height: 35px;
-  padding: 5px;
-  border: 1px solid #d1d1d1;
-  border-radius: 3px;
+  position: relative;
 }
 
-input[type="text"] {
-  flex: 1;
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#tagInput {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
   outline: none;
 }
 
-.tag {
-  position: relative;
-  background-color: #f1f1f1;
-  padding: 3px 8px;
-  border-radius: 3px;
-  margin-right: 5px;
-  margin-bottom: 5px;
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: auto;
+  max-height: 200px;
+  width: 100%;
+  z-index: 1;
 }
 
-.remove-btn {
-  position: absolute;
-  top: -3px;
-  left: -8px;
-  background-color: #d1d1d1;
-  color: #fff;
-  border-radius: 50%;
-  font-size: 10px;
-  width: 14px;
-  height: 14px;
-  line-height: 14px;
-  text-align: center;
+.dropdown-menu li {
+  padding: 5px;
   cursor: pointer;
 }
+
+.dropdown-menu li:hover {
+  background-color: #ddd;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #f1f1f1;
+  color: #666;
+  padding: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.remove-tag {
+  margin-left: 5px;
+  color: #999;
+  cursor: pointer;
+}
+
 
 
 .form-control-label {

@@ -408,43 +408,97 @@ jQuery(document).ready(function($) {
 
 });
 
-const tagInput = document.getElementById('tagInput');
 
-tagInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ',') {
-        event.preventDefault();
-        const tagText = tagInput.value.trim();
-        if (tagText) {
-            createTag(tagText);
-            tagInput.value = '';
-        }
-    } else if (event.key === 'Backspace' && tagInput.value === '') {
-        removeLastTag();
+
+const tagInput = document.getElementById('tagInput');
+const tagsContainer = document.querySelector('.tags-container');
+const hiddenTagsInput = document.getElementById('tags');
+
+tagInput.addEventListener('input', () => {
+  const filter = tagInput.value.toUpperCase();
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+  const tags = dropdownMenu.getElementsByTagName('li');
+  let hasVisibleTags = false;
+  for (let i = 0; i < tags.length; i++) {
+    const tagText = tags[i].textContent || tags[i].innerText;
+    if (tagText.toUpperCase().indexOf(filter) > -1 && !isTagSelected(tagText)) {
+      tags[i].style.display = '';
+      hasVisibleTags = true;
+    } else {
+      tags[i].style.display = 'none';
     }
+  }
+  dropdownMenu.style.display = hasVisibleTags ? 'block' : 'none';
+});
+
+document.addEventListener('click', (event) => {
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+  if (!event.target.matches('.dropdown-toggle')) {
+    dropdownMenu.style.display = 'none';
+  }
+});
+
+document.addEventListener('click', (event) => {
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+  if (event.target.matches('.dropdown-menu li')) {
+    const tagText = event.target.textContent || event.target.innerText;
+    createTag(tagText);
+    tagInput.value = '';
+    dropdownMenu.style.display = 'none';
+  }
+});
+
+tagsContainer.addEventListener('click', (event) => {
+  if (event.target.matches('.tag')) {
+    const tag = event.target;
+    const tagText = tag.textContent || tag.innerText;
+    tag.remove();
+    removeTagFromInput(tagText);
+  }
 });
 
 function createTag(text) {
-    const tag = document.createElement('span');
-    tag.classList.add('tag');
-    tag.innerText = text;
-
-    const removeBtn = document.createElement('span');
-    removeBtn.classList.add('remove-btn');
-    removeBtn.innerText = 'x';
-    removeBtn.addEventListener('click', () => {
-        tag.remove();
-    });
-
-    tag.appendChild(removeBtn);
-    tagInput.insertAdjacentElement('beforebegin', tag);
-}
-
-function removeLastTag() {
-    const tags = document.querySelectorAll('.tag');
-    if (tags.length > 0) {
-        tags[tags.length - 1].remove();
+  const tags = document.querySelectorAll('.tag');
+  for (let i = 0; i < tags.length; i++) {
+    if (tags[i].textContent === text) {
+      return;
     }
+  }
+
+  const tag = document.createElement('div');
+  tag.classList.add('tag');
+  tag.textContent = text;
+  tagsContainer.appendChild(tag);
+  addTagToInput(text);
 }
+
+function isTagSelected(text) {
+  const hiddenTags = hiddenTagsInput.value.split(',');
+  return hiddenTags.includes(text);
+}
+
+function addTagToInput(text) {
+  const hiddenTags = hiddenTagsInput.value.split(',');
+  if (!hiddenTags.includes(text)) {
+    hiddenTags.push(text);
+  }
+  hiddenTagsInput.value = hiddenTags.join(',');
+}
+
+function removeTagFromInput(text) {
+  const hiddenTags = hiddenTagsInput.value.split(',');
+  const index = hiddenTags.indexOf(text);
+  if (index > -1) {
+    hiddenTags.splice(index, 1);
+  }
+  hiddenTagsInput.value = hiddenTags.join(',');
+}
+
+
+
+
+  
+
 
 // Add this function to handle the file upload
 async function uploadImage(file) {

@@ -3,6 +3,10 @@
 {% block title %}form{% endblock %}
 
 <link rel="stylesheet" href="main.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 {% block nav %}
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
@@ -61,29 +65,36 @@
                 <input type="date" placeholder="End date" class="form-control" name="date" required>
               </div>
               <div class="tags-input">
-                <select id="tagInput" placeholder="Enter tags..." name="tags"> 
-                  <option value="medical">Medical</option>
-                  <option value="education">Education</option>
-                  <option value="emergency">Emergency</option>
-                  <option value="nonprofit">Nonprofit</option>
-                  <option value="memorial">Memorial</option>
-                  <option value="community">Community</option>
-                  <option value="environment">Environment</option>
-                  <option value="animal_welfare">Animal Welfare</option>
-                  <option value="arts_culture">Arts & Culture</option>
-                  <option value="sports">Sports</option>
-                  <option value="technology">Technology</option>
-                  <option value="personal_development">Personal Development</option>
-                  <option value="social_justice">Social Justice</option>
-                  <option value="veterans_military">Veterans & Military</option>
-                  <option value="international">International</option>
-                  <option value="volunteer">Volunteer</option>
-                  <option value="faith_based">Faith-based</option>
-                  <option value="disability_support">Disability Support</option>
-                  <option value="mental_health">Mental Health</option>
-                  <option value="research">Research</option>
-                </select>
+                <div class="dropdown">
+                  <input type="text" id="tagInput" placeholder="Add a tag" autocomplete="off">
+                  <ul class="dropdown-menu">
+                    <li>Medical</li>
+                    <li>Education</li>
+                    <li>Emergency</li>
+                    <li>Nonprofit</li>
+                    <li>Memorial</li>
+                    <li>Community</li>
+                    <li>Environment</li>
+                    <li>Animal Welfare</li>
+                    <li>Arts & Culture</li>
+                    <li>Sports</li>
+                    <li>Technology</li>
+                    <li>Personal Development</li>
+                    <li>Social Justice</li>
+                    <li>Veterans & Military</li>
+                    <li>International</li>
+                    <li>Volunteer</li>
+                    <li>Faith-based</li>
+                    <li>Disability Support</li>
+                    <li>Mental Health</li>
+                    <li>Research</li>
+                  </ul>
+                </div>
+                <div class="tags-container"></div>
+                <input type="hidden" id="tags" name="tags">
               </div>
+              
+              
               <div class="form-group">
                 <input type="submit" value="Complete" class="btn btn-primary submit-button">
               </div>
