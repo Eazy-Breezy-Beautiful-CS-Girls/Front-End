@@ -24,7 +24,7 @@
 </div>
 <div class="site-section">
   <div class="container">
-    <div class="row mb-5 align-items-st">
+     <div class="row mb-5 align-items-st" style="justify-content: center;  background: #EEEEEE; border: 5px solid #009578; padding-top: 25px;">
       <div class="col-md-7">
         <div class="heading-20219">
           <h2 class="title mb-4">{{ fund[0] }}</h2>
@@ -88,24 +88,20 @@
       <h1> Previous Donors  </h1>
       {% for comment in comments %}
 
-      <div class="container" style="border-width:3px; border-style:solid; border-color:#009578; padding: 1em; background: #EEEEEE; margin: 15px; ">
-      
+      <div class="container" style="border-left: 5px solid #009578; background: #EEEEEE; margin: 15px; ">
+      <div style="padding: 25px;">
         <div class="row" >
-          <h3 style="text-decoration: none; border-bottom:1px dotted; color: #009578;">Donor: {{comment[0]}}</h3>
+          <h3 style="text-decoration: none; border-bottom:2px dotted; color: #009578;">Donor: {{comment[0]}}</h3>
         </div>
         <div class="row">
-          <p> &emsp;&emsp;Donation Amount: {{comment[1]}}</p>
-          
+          <p> &emsp;&emsp;Donation Amount: {{comment[1]}}</p>    
         </div>
         
         
         <div class="row">
           <p> &emsp;&emsp;Comments: {{comment[2]}}</p>
-          
         </div>
-        
-        
-        
+      </div>
       </div> 
       
       {% endfor %}
