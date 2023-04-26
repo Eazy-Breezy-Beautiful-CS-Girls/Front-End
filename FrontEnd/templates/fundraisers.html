@@ -71,7 +71,7 @@
                   <input id="cvc" type="text" class="form-control" placeholder="CVC" maxlength="3" minlength="3" pattern="[0-9]{3}">
                 </div>
                 <div class="form-group col-sm-12">
-                    <input type="submit" class="btn btn-primary btn-block">
+                  <input type="submit" class="btn btn-primary btn-block">
                 </div>
               </div>
             </div>
@@ -80,15 +80,29 @@
       </div>
     </div>
     <div class="row mb-5 align-items-st">
+      <h1> Previous Donors  </h1>
       {% for comment in comments %}
-      <div class="container">
-        <div class="row">
-          <h2>{{comment[0]}}</h2>
+
+      <div class="container" style="border-width:3px; border-style:solid; border-color:#009578; padding: 1em; background: #EEEEEE; ">
+      
+        <div class="row" >
+          <h3 style="text-decoration: none; border-bottom:1px dotted; color: #009578;">Donor: {{comment[0]}}</h3>
         </div>
         <div class="row">
-          <p>{{comment[1]}}</p>
+          <p> &emsp;&emsp;Donation Amount: {{comment[1]}}</p>
+          
         </div>
+        
+        
+        <div class="row">
+          <p> &emsp;&emsp;Comments: {{comment[2]}}</p>
+          
+        </div>
+        
+        
+        
       </div> 
+      
       {% endfor %}
     </div>
   </div>
