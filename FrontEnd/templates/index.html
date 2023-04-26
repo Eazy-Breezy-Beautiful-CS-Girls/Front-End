@@ -39,12 +39,16 @@
     </div>
     <div class="row">
       <!-- make these auto-populated with the funds list of fundraisers with labels: FundName, FundTyp, Goal, Raised-->
-      {% for fund in funds %}
+      {% for fund, fund_image in fund_data %}
       {% set number = ((fund[5]/fund[4])*100)|int %}
       <div class="col-md-4">
         <div class="cause shadow-sm">
           <a href="{{ url_for('fund.fundraisers', fund_name = fund[0])}}"  class="cause-link d-block">
+            {% if fund_image %}
+            <img src="data:image/jpeg;base64,{{ fund_image }}" alt="Image" class="img-fluid">
+            {% else %}
             <img src="static/images/Homeless.jpg" alt="Image" class="img-fluid">
+            {% endif %}
             <div class="custom-progress-wrap">
               <span class="caption">{{ number }}% complete</span>
               <div class="custom-progress-inner">
