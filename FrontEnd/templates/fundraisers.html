@@ -28,8 +28,13 @@
       <div class="col-md-7">
         <div class="heading-20219">
           <h2 class="title mb-4">{{ fund[0] }}</h2>
+          <div class="tags-container">
+            {% for tag in fund[7].split(',') %}
+              <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          
           <p>{{ fund[3] }}</p>
-          <p>{{ fund[7] }}</p>
         </div>
       </div>
       <div class="col-md-7">
@@ -80,15 +85,29 @@
       </div>
     </div>
     <div class="row mb-5 align-items-st">
+      <h1> Previous Donors  </h1>
       {% for comment in comments %}
-      <div class="container">
-        <div class="row">
-          <h2>{{comment[0]}}</h2>
+
+      <div class="container" style="border-width:3px; border-style:solid; border-color:#009578; padding: 1em; background: #EEEEEE; margin: 15px; ">
+      
+        <div class="row" >
+          <h3 style="text-decoration: none; border-bottom:1px dotted; color: #009578;">Donor: {{comment[0]}}</h3>
         </div>
         <div class="row">
-          <p>{{comment[1]}}</p>
+          <p> &emsp;&emsp;Donation Amount: {{comment[1]}}</p>
+          
         </div>
+        
+        
+        <div class="row">
+          <p> &emsp;&emsp;Comments: {{comment[2]}}</p>
+          
+        </div>
+        
+        
+        
       </div> 
+      
       {% endfor %}
     </div>
   </div>

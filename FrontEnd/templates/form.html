@@ -47,7 +47,7 @@
           </div>
           <div class="col-md-6">
             <div class="bg-white h-100 p-4 shadow">
-              <h3 class="mb-4 text-cursive">Your Fundraiser</h3>
+              <h3> Your Fundraiser</h3>
               <div class="form-group">
                 <input type="file" name="Picture" id="imageInput" style="display:none;" onchange="validateImage(this);" multiple>
               </div>
@@ -60,13 +60,13 @@
               <div class="form-group">
                 <textarea class="form-control-label-desc" placeholder="Description" name="description" rows="1" required></textarea>
               </div>
-              <h5 class="mb-4 text-cursive m-r-top" >End date</h5>
+              <h6 class="m-r-top" >End date</h6>
               <div class="form-group">
-                <input type="date" placeholder="End date" class="form-control" name="date" required>
-              </div>
+                <input type="date" placeholder="End date" class="form-control" name="date" id="endDate" min="{{ min_date }}" required>
+              </div>                  
               <div class="tags-input">
                 <div class="dropdown">
-                  <input type="text" id="tagInput" placeholder="Add a tag" autocomplete="off">
+                  <input type="text" id="tagInput" placeholder="Add a tag" autocomplete="off" required>
                   <ul class="dropdown-menu">
                     <li>Medical</li>
                     <li>Education</li>
@@ -88,6 +88,7 @@
                     <li>Disability Support</li>
                     <li>Mental Health</li>
                     <li>Research</li>
+                    <li>Other</li>
                   </ul>
                 </div>
                 <div class="tags-container"></div>

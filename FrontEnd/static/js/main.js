@@ -460,7 +460,7 @@ tagsContainer.addEventListener('click', (event) => {
 function createTag(text) {
   const tags = document.querySelectorAll('.tag');
   for (let i = 0; i < tags.length; i++) {
-    if (tags[i].textContent === text) {
+    if (tags[i].textContent5 === text) {
       return;
     }
   }
@@ -663,3 +663,15 @@ function showPreview(event){
 	  preview.style.display = "block";
 	}
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+	var today = new Date();
+	var dateString = today.toISOString().substr(0, 10);
+	var endDate = document.getElementById('endDate');
+	
+	if (endDate) {
+	  endDate.setAttribute('min', dateString);
+	}
+  });
+  
+  
