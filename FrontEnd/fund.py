@@ -20,7 +20,17 @@ def index():
     with get_db().cursor() as cursor:
         cursor.execute('SELECT * FROM Funds')
         funds = cursor.fetchall()
-        return render_template('index.html', funds=funds)
+        fund_images = []
+        fund_data = zip(funds, fund_images)
+        for fund in funds:
+            cursor.execute('SELECT picture FROM Images WHERE FundName = %s LIMIT 1', (fund[0],))
+            image = cursor.fetchone()
+            if image:
+                fund_images.append(b64encode(image[0]).decode('utf-8'))
+            else:
+                fund_images.append(None)
+        return render_template('index.html', fund_data=fund_data)
+
 
 @bp.route('/causes', methods=['GET'])
 def causes():
@@ -49,14 +59,14 @@ def fundraisers(fund_name):
         cursor.execute('SELECT UserID,DonoAmount,DonoComment FROM Donations WHERE FundName = %s', (fund_name))
         comments = cursor.fetchall()
 
-
     return render_template('fundraisers.html', fund=fund, images=images, comments=comments)
 
 @bp.route('/form', methods=['GET', 'POST'])
 @login_required
 def form():
     if request.method == 'GET':
-        return render_template('form.html')
+        min_date = datetime.date.today().isoformat()
+        return render_template('form.html', min_date=min_date)
     elif request.method == 'POST':
         title = request.form.get('title')
         description = request.form.get('description')
@@ -65,7 +75,6 @@ def form():
         end_date = request.form.get('date')
         start_date = datetime.datetime.now()
         tags = request.form.get('tags')
-        
         
         # Insert fundraiser information and image into the database
         with get_db().cursor() as cursor:
@@ -82,4 +91,5 @@ def form():
                 # Remove the saved image file
                 os.remove(image.filename)
         
-        return redirect(url_for('fund.fundraisers', fund_name = title))
+        return redirect(url_for('fund.fundraisers', fund_name=title))
+

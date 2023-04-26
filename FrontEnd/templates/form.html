@@ -62,11 +62,11 @@
               </div>
               <h6 class="m-r-top" >End date</h6>
               <div class="form-group">
-                <input type="date" placeholder="End date" class="form-control" name="date" required>
-              </div>
+                <input type="date" placeholder="End date" class="form-control" name="date" id="endDate" min="{{ min_date }}" required>
+              </div>                  
               <div class="tags-input">
                 <div class="dropdown">
-                  <input type="text" id="tagInput" placeholder="Add a tag" autocomplete="off">
+                  <input type="text" id="tagInput" placeholder="Add a tag" autocomplete="off" required>
                   <ul class="dropdown-menu">
                     <li>Medical</li>
                     <li>Education</li>
