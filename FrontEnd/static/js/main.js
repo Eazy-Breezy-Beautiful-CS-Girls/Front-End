@@ -460,7 +460,7 @@ tagsContainer.addEventListener('click', (event) => {
 function createTag(text) {
   const tags = document.querySelectorAll('.tag');
   for (let i = 0; i < tags.length; i++) {
-    if (tags[i].textContent === text) {
+    if (tags[i].textContent5 === text) {
       return;
     }
   }
