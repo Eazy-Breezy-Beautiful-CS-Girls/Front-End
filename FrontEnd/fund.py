@@ -46,7 +46,7 @@ def fundraisers(fund_name):
         images=list()
         for image in imagesFetch:
             images.append(b64encode(image[0]).decode('utf-8'))
-        cursor.execute('SELECT UserID,DonoComment FROM Donations WHERE FundName = %s', (fund_name))
+        cursor.execute('SELECT UserID,DonoAmount,DonoComment FROM Donations WHERE FundName = %s', (fund_name))
         comments = cursor.fetchall()
 
 
