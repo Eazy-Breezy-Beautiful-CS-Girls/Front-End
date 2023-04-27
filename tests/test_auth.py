@@ -84,3 +84,58 @@ def test_logout(client, auth):
     with client:
         auth.logout()
         assert "user_id" not in session
+        
+def test_contact(client, auth):
+    response = client.get("/auth/contact/test")
+    assert response.headers["Location"] == "/auth/login"
+    
+    auth.login()
+    response = client.get("/auth/contact/test")
+    
+    assert b"test" in response.data
+    
+def test_contact_change(client, auth):
+    auth.login()
+    client.post('/auth/contact/test', data={'fname':'tester','lname':'testerson','email':'tester@realmail.com','bio':'this guy tests a lot'})
+    
+    with client:
+        auth.logout()
+        with get_db().cursor() as cursor:
+            cursor.execute('SELECT FirstName, LastName, Email, Bio FROM UserInfo WHERE UserID = %s',('test'))
+            user = cursor.fetchone()
+            assert user[0] == 'tester'
+            assert user[1] == 'testerson'
+            assert user[2] == 'tester@realmail.com'
+            assert user[3] == 'this guy tests a lot'
+    
+    auth.login()
+    client.post('/auth/contact/test', data={'fname':'test','lname':'test','email':'test@realmail.com','bio':''})
+    
+    with client:
+        auth.logout()
+("test", "tester","tester", "")
+@pytest.mark.parametrize(
+    ("current_pass", "new_pass", "auth_pass","message"),
+    (("a", "aoeu", "aoeu", b"Incorrect Password"),
+     ("test", "tester", "testing", b"Passwords do not match"))
+)
+def test_contact_password_change_fails(client, auth, current_pass, new_pass, auth_pass,message):
+    auth.login()
+    response = client.post("/auth/contact/test", data={'c_pass':current_pass,"n_pass":new_pass,"a_pass":auth_pass})
+    assert message in response.data
+
+@pytest.mark.parametrize(
+    ("current_pass", "new_pass", "auth_pass"),
+    (("test", "tester", "tester"),
+     ("tester", "test", "test"))
+)
+def test_contact_password_change(client, app, auth, current_pass, new_pass, auth_pass):
+    auth.login(username='test',password=current_pass)
+    client.post("/auth/contact/test", data={'c_pass':current_pass,"n_pass":new_pass,"a_pass":auth_pass})
+    with client:
+        auth.logout()
+    with app.app_context():
+        with get_db().cursor() as cursor:
+            cursor.execute("SELECT Password From UserInfo WHERE UserID='test'")
+            password = cursor.fetchone()
+            assert password[0].encode('utf-8') == new_pass.encode('utf-8')
