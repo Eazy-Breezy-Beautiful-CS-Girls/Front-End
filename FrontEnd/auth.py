@@ -44,6 +44,7 @@ def load_logged_in_user():
 def logout():
     session.clear()
     get_db().cursor().execute('DELETE FROM LoggedIn WHERE UserID=%s', (g.user))
+    get_db().commit()
     return redirect(url_for('index'))
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -60,7 +61,7 @@ def login():
             session.clear()
             session['user_id'] = username
             return redirect(url_for('index'))
-        flash('Login failed')
+        flash('Login Failed')
         return render_template('login.html')
     
 @bp.route('/Sign-up', methods=['GET','POST'])
