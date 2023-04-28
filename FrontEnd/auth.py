@@ -44,49 +44,48 @@ def load_logged_in_user():
 def logout():
     session.clear()
     get_db().cursor().execute('DELETE FROM LoggedIn WHERE UserID=%s', (g.user))
+    get_db().commit()
     return redirect(url_for('index'))
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
-    elif request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        if not get_db().cursor().execute("SELECT * FROM UserInfo WHERE UserID = %s AND Password = %s",(username, password)) == 0:
-            get_db().cursor().execute("INSERT IGNORE INTO LoggedIn (UserID) VALUES (%s)",(username))
-            get_db().commit()
-            flash('Logged in successfully.')
-            session.clear()
-            session['user_id'] = username
-            return redirect(url_for('index'))
-        flash('Login failed')
-        return render_template('login.html')
+    username = request.form.get('username')
+    password = request.form.get('password')
+    if not get_db().cursor().execute("SELECT * FROM UserInfo WHERE UserID = %s AND Password = %s",(username, password)) == 0:
+        get_db().cursor().execute("INSERT IGNORE INTO LoggedIn (UserID) VALUES (%s)",(username))
+        get_db().commit()
+        flash('Logged in successfully.')
+        session.clear()
+        session['user_id'] = username
+        return redirect(url_for('index'))
+    flash('Login Failed')
+    return render_template('login.html')
     
 @bp.route('/Sign-up', methods=['GET','POST'])
 def Signup():
     if request.method == 'GET':
         return render_template('Sign-up.html')
-    elif request.method == 'POST':
-        Fname = request.form.get('fname')
-        Lname = request.form.get('lname')
-        Email = request.form.get('email')
-        UserID = request.form.get('username')
-        Password = request.form.get('password')
-        AuthPassword = request.form.get('auth_password')
-        if Fname == '' or Lname == '':
-            return render_template('Sign-up.html', no_name='Name Required')
-        if UserID == '':
-            return render_template('Sign-up.html', no_username='User ID Required')
-        if Email == '':
-            return render_template('Sign-up.html', no_email='Email Required')
-        if Password == '':
-            return render_template('Sign-up.html', no_password='Password Required')
-        if Password!= AuthPassword:
-            return render_template('Sign-up.html', no_match='Passwords must match')
-        get_db().cursor().execute("INSERT IGNORE INTO UserInfo (UserID,Password,Email,FirstName,LastName) VALUES (%s,%s,%s,%s,%s)", (UserID,Password,Email,Fname,Lname))
-        get_db().commit()
-        return login()
+    Fname = request.form.get('fname')
+    Lname = request.form.get('lname')
+    Email = request.form.get('email')
+    UserID = request.form.get('username')
+    Password = request.form.get('password')
+    AuthPassword = request.form.get('auth_password')
+    if Fname == '' or Lname == '':
+        return render_template('Sign-up.html', no_name='Name Required')
+    if UserID == '':
+        return render_template('Sign-up.html', no_username='User ID Required')
+    if Email == '':
+        return render_template('Sign-up.html', no_email='Email Required')
+    if Password == '':
+        return render_template('Sign-up.html', no_password='Password Required')
+    if Password!= AuthPassword:
+        return render_template('Sign-up.html', no_match='Passwords must match')
+    get_db().cursor().execute("INSERT IGNORE INTO UserInfo (UserID,Password,Email,FirstName,LastName) VALUES (%s,%s,%s,%s,%s)", (UserID,Password,Email,Fname,Lname))
+    get_db().commit()
+    return login()
 
 @bp.route('/contact/<string:UserID>', methods=['GET','POST'])
 @login_required
@@ -116,12 +115,19 @@ def contact(UserID):
             if current_pass == user[0]:
                 if new_pass == auth_pass:
                     cursor.execute('UPDATE UserInfo SET Password = %s WHERE UserID = %s',(new_pass, UserID))
-                    get_db.commit()
+                    get_db().commit()
                 elif new_pass != auth_pass:
-                    flash('Passwords do not match','error')
+                    flash('Passwords do not match')
             elif current_pass != user[0]:
-                flash('Incorrect Password','error')
-    return redirect(url_for('auth.contact', UserID=UserID))
+                flash('Incorrect Password')
+    with get_db().cursor() as cursor:
+        cursor.execute('SELECT * FROM UserInfo WHERE UserID = %s',(UserID))
+        user = cursor.fetchone()
+        try:
+            image = b64encode(user[4]).decode('utf-8')
+        except:
+            image = None
+        return render_template('contact.html', user=user, image=image)
 
 @bp.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
