@@ -37,14 +37,17 @@
                 <br>
                 
                 
-                <input type="file" multiple name="myFile" class="drop-zone__input" id="dragDrop" onchange="showPreview(event);">
-                <button onclick="document.getElementById('dragDrop').value = ''">Clear Input Field</button>
-              
+                <input type="file" multiple name="myFile" class="drop-zone__input" id="dragDrop" onchange="showPreview(event,0);">
+               
+                <button onclick="document.getElementById('dragDrop').value = '', pictureChange() ">Clear Uploads</button>
+                
+               
               
               </div>
               <br>
               <br>
               <div class="preview">
+                <p> Image Preview:</p>
                 <img id="file-ip-1-preview" style="height: 400px; width: 400px;">
               </div>  
             </div>

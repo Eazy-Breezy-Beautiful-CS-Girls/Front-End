@@ -655,13 +655,22 @@ function updateThumbnail(dropZoneElement, file) {
 }
 
 
-function showPreview(event){
+function showPreview(event, clear ){
 	if(event.target.files.length > 0){
 	  var src = URL.createObjectURL(event.target.files[0]);
 	  var preview = document.getElementById("file-ip-1-preview");
 	  preview.src = src;
 	  preview.style.display = "block";
+	  /*if(clear === 1){
+		src = URL.createObjectURL(event.target.files[1])
+		preview.src = src
+	  }*/
 	}
+  }
+
+  function pictureChange()
+    {
+    document.getElementById('file-ip-1-preview').src="static/images/Solid_white.png";
   }
 
   document.addEventListener('DOMContentLoaded', function() {
