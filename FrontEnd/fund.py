@@ -1,12 +1,10 @@
 from base64 import b64encode
 import datetime
 from flask import Blueprint
-from flask import flash
 from flask import g
 from flask import redirect
 from flask import render_template
 from flask import request
-from flask import session
 from flask import url_for
 from FrontEnd.auth import login_required
 import os
@@ -30,11 +28,6 @@ def index():
             else:
                 fund_images.append(None)
         return render_template('index.html', fund_data=fund_data)
-
-
-@bp.route('/causes', methods=['GET'])
-def causes():
-    return render_template('causes.html')
 
 @bp.route('/fundraisers/<string:fund_name>', methods=['GET','POST'])
 def fundraisers(fund_name):
