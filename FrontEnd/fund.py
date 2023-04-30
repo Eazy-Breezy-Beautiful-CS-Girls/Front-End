@@ -34,7 +34,7 @@ def index():
 def fundraisers(fund_name):
     if request.method == 'POST':
         title = fund_name
-        amount = request.form.get('amount')
+        amount = request.form.get('amount').replace(',','')
         comment = request.form.get('comment')
         get_db().cursor().execute('UPDATE Funds SET FundRaised = FundRaised+%s WHERE FundName = %s',(amount,title))
         get_db().commit()
