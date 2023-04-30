@@ -25,29 +25,26 @@
 </div>
 <div class="site-section" style="background-color: #EEEEEE;">
   <div class="container">
-     <div class="row mb-5 align-items-st" style="justify-content: center; background: white; border: 3px solid #009578; padding-top: 25px;">
+     <div class="row mb-5 align-items-st" style="justify-content: left; background: white; border: 3px solid #009578; padding-top: 25px;">
       <center>
-        <div class="col-md-7">
-        
-        <div class="heading-20219">
-          <h2 class="title mb-4 text-cursive" >{{ fund[0] }}</h2>
-          <div class="tags-container">
-            {% for tag in fund[7].split(',') %}
-              <span class="tag">{{ tag }}</span>
-            {% endfor %}
+        <div class="col-md-7 left-aligned">
+          <div class="heading-20219">
+            <h2 class="title mb-4 text-cursive">{{ fund[0] }}</h2>
+            <div class="tags-container ">
+              {% for tag in fund[7].split(',') %}
+                <span class="tag ">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            <p>{{ fund[3] }}</p>
           </div>
-          
-          
-          <p >{{ fund[3] }}</p>
-        </div>
-        <p> End date: {{ fund[2] }}</p>
-        <p> Funds: {{ fund[5] }} / {{ fund[4] }} </p>
-       </div> 
+          <p>End date: {{ fund[2].strftime('%m-%d-%Y') }}</p>
+          <p>Funds: {{ fund[5] }} / {{ fund[4] }}</p>
+        </div> 
       </center>
       <div class="col-md-7">
         <div class="cause shadow-sm">
           <form method="POST">
-            <div class="form-group">
+            <div class="form-group left-align">
                 <input type="number" class="form-control inputFeild" placeholder="Your donation amount" name="amount">
             </div>
             <div class="form-group">
