@@ -32,6 +32,13 @@
         {% for tag in fund[7].split(',') %}
           <span class="tag">{{ tag }}</span>
         {% endfor %}
+        {% set number = ((fund[5]/fund[4])*100)|int %}
+        <div class="custom-progress-wrap">
+          <span class="caption">{{ number }}% complete</span>
+          <div class="custom-progress-inner">
+            <div class="custom-progress bg-danger" style="width: {{ number }}%;"></div>
+          </div>
+        </div>
       </div>
     </div> 
   </div>
