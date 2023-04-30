@@ -683,3 +683,63 @@ function showPreview(event, clear ){
 	}
   });
   
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	searchInput.addEventListener('keyup', filterFundraisers);
+  
+	const endDateFilterBtn = document.getElementById('filterByEndDate');
+	endDateFilterBtn.addEventListener('click', filterByEndDate);
+  
+	const clearFilterBtn = document.getElementById('clearFilters');
+	clearFilterBtn.addEventListener('click', clearFilters);
+  });
+  
+  var originalFundCards; // Change this line from let to var
+  
+  function filterFundraisers() {
+	const filter = searchInput.value.toUpperCase();
+	const fundCards = document.getElementsByClassName('fund-card');
+	
+	for (let i = 0; i < fundCards.length; i++) {
+	  const cardTitle = fundCards[i].getElementsByTagName('h3')[0];
+	  if (cardTitle.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		fundCards[i].style.display = '';
+	  } else {
+		fundCards[i].style.display = 'none';
+	  }
+	}
+  }
+  
+  function clearUploads() {
+	document.getElementById('dragDrop').value = '';
+	document.getElementById('file-ip-1-preview').src = '';
+  }
+  function showPreview(event, index) {
+	const input = event.target;
+	const allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+	if (input.files && input.files[0]) {
+	  const fileType = input.files[0].type;
+
+	  if (!allowedFileTypes.includes(fileType)) {
+		alert('That file type is not supported.');
+		input.value = '';
+		return;
+	  }
+
+	  const reader = new FileReader();
+	  reader.onload = function(e) {
+		document.getElementById('file-ip-1-preview').src = e.target.result;
+	  }
+	  reader.readAsDataURL(input.files[0]);
+	}
+  }
+
+  function preventFormSubmit(event) {
+	if (event.key === 'Enter') {
+	  event.preventDefault();
+	}
+  }
+
