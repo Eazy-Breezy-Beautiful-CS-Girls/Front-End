@@ -3,6 +3,7 @@
 {% block title %}fundraisers{% endblock %}
 
 {% block nav %}
+
 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
 <li><a href="{{ url_for('fund.form') }}" class="nav-link">Create Fundraiser</a></li>
 {% if g.user %}
@@ -34,8 +35,11 @@
             {% endfor %}
           </div>
           
+          
           <p>{{ fund[3] }}</p>
         </div>
+        <p> End date: {{ fund[2] }}</p>
+        <p> Funds: {{ fund[5] }} / {{ fund[4] }} </p>
       </div>
       <div class="col-md-7">
         <div class="cause shadow-sm">

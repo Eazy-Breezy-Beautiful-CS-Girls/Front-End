@@ -738,9 +738,8 @@ function showPreview(event, clear ){
   }
 
   function preventFormSubmit(event) {
-	if (event.key === "Enter") {
+	if (event.key === 'Enter') {
 	  event.preventDefault();
 	}
   }
-
 

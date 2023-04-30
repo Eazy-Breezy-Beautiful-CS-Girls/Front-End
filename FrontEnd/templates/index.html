@@ -37,15 +37,18 @@
         <p>Help them reach their goal!</p>
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="fund-container">
       <!-- Add the search bar -->
       <div class="col-md-12 mb-4">
         <input type="text" id="searchInput" onkeyup="filterFundraisers()" placeholder="Search for fundraisers..." class="form-control">
       </div>
+    
       <!-- make these auto-populated with the funds list of fundraisers with labels: FundName, FundTyp, Goal, Raised-->
       {% for fund, fund_image in fund_data %}
       {% set number = ((fund[5]/fund[4])*100)|int %}
-      <div class="col-md-4 fund-card"> <!-- Add the class "fund-card" here -->
+      
+      <div class="col-md-4 fund-card" data-end-date="{{ fund[3] }}" data-remaining="{{ fund[4]-fund[5] }}"> <!-- Add the data-end-date and data-remaining attributes here -->
+
         <div class="cause shadow-sm">
           <a href="{{ url_for('fund.fundraisers', fund_name = fund[0])}}"  class="cause-link d-block">
             {% if fund_image %}

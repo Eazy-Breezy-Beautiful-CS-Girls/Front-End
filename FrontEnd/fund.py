@@ -8,6 +8,7 @@ from flask import request
 from flask import url_for
 from FrontEnd.auth import login_required
 import os
+import json
 
 from FrontEnd.database import get_db
 
@@ -85,6 +86,7 @@ def form():
                 os.remove(image.filename)
         
         return redirect(url_for('fund.fundraisers', fund_name=title))
+
 
 
 
