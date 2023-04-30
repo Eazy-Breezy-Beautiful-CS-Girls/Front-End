@@ -16,14 +16,14 @@ def test_index(client, auth):
 def test_fund_page(client):
     assert client.get('/fundraisers/money').status_code == 200
     
-def test_create(client, auth, app):
+def test_fund_create(client, auth, app):
     auth.login()
     assert client.get('/form').status_code == 200
-    # client.post("/form", data={'myFile':'','title': 'testing', 'description': 'testing', 'goal': '300', 'date':str(datetime.date.today().isoformat()), 'tags':''})
+    client.post("/form", data={'title': 'testing', 'description': 'testing', 'goal': '30000', 'date':str(datetime.date.today()), 'tags':'Other'})
     
-    # with app.app_context():
-    #     with get_db().cursor() as cursor:
-    #         cursor.execute("SELECT * FROM Funds WHERE FundName='testing'")
-    #         fund = cursor.fetchone()
-    #         assert len(fund) == 1
-    #         cursor.execute("DELETE FROM Funds WHERE FundName='testing'")
+    with app.app_context():
+        with get_db().cursor() as cursor:
+            cursor.execute("SELECT * FROM Funds WHERE FundName='testing'")
+            fund = cursor.fetchone()
+            assert len(fund) == 1
+            cursor.execute("DELETE FROM Funds WHERE FundName='testing'")
