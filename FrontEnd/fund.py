@@ -93,3 +93,5 @@ def form():
         
         return redirect(url_for('fund.fundraisers', fund_name=title))
 
+
+

@@ -683,4 +683,34 @@ function showPreview(event, clear ){
 	}
   });
   
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	searchInput.addEventListener('keyup', filterFundraisers);
   
+	const endDateFilterBtn = document.getElementById('filterByEndDate');
+	endDateFilterBtn.addEventListener('click', filterByEndDate);
+  
+	const clearFilterBtn = document.getElementById('clearFilters');
+	clearFilterBtn.addEventListener('click', clearFilters);
+  });
+  
+  var originalFundCards; // Change this line from let to var
+  
+  function filterFundraisers() {
+	const filter = searchInput.value.toUpperCase();
+	const fundCards = document.getElementsByClassName('fund-card');
+	
+	for (let i = 0; i < fundCards.length; i++) {
+	  const cardTitle = fundCards[i].getElementsByTagName('h3')[0];
+	  if (cardTitle.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		fundCards[i].style.display = '';
+	  } else {
+		fundCards[i].style.display = 'none';
+	  }
+	}
+  }
+  
+
+
