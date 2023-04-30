@@ -27,27 +27,22 @@
               <div>
                 <span class="drop-zone__prompt" id="myInput">Drop File Here or Click to Upload</span>
                 <br>
-                <input type="file" multiple name="myFile" class="drop-zone__input" id="dragDrop" onchange="showPreview(event,0);" multiple accept="image/jpeg,image/png,image/gif" required>
-                <button class='btn btn-primary submit-button' style="margin-top: 15px;" onclick="document.getElementById('dragDrop').value = '', pictureChange() ">Clear Uploads</button>
+                <input type="file" multiple name="myFile" class="drop-zone__input" id="dragDrop" onchange="showPreview(event,0);" multiple accept="image/jpeg,image/png,image/gif">
+                <button class="btn btn-primary submit-button" style="margin-top: 15px;" onclick="document.getElementById('dragDrop').value = '', pictureChange() ">Clear Uploads</button>
               </div>
               <br>
               <br>
               <div class="preview">
                 <p> Image Preview:</p>
-                <img id="file-ip-1-preview" style="height: 400px; width: 400px;">
+                <img id="file-ip-1-preview" src="/static/images/Flood.jpg" style="height: 400px; width: 400px;">
               </div>  
             </div>
           </div>
           <div class="col-md-6">
             <div class="bg-white h-100 p-4 shadow">
               <h3> Your Fundraiser</h3>
-
               <div class="form-group">
-                <input type="file" name="Picture" id="imageInput" style="display:none;" onchange="validateImage(this);"  multiple accept="image/jpeg,image/png,image/gif" required>
-              </div>
-              
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Title" name="title" required onkeydown="preventFormSubmit(event)">
+                <input type="text" class="form-control" placeholder="Title" name="title" required>
               </div>
               
               <div class="form-group">
@@ -59,11 +54,11 @@
               </div>
               <h6 class="m-r-top" >End date</h6>
               <div class="form-group">
-                <input type="date" placeholder="End date" class="form-control" name="date" id="endDate" min="{{ min_date }}" max="9999-12-31" requiredonkeydown="preventFormSubmit(event)">
+                <input type="date" placeholder="End date" class="form-control" name="date" id="endDate" min="{{ min_date }}" max="9999-12-31">
               </div>                  
               <div class="tags-input">
                 <div class="dropdown">
-                  <input type="text" id="tagInput" placeholder="Add a tag" autocomplete="off" onkeydown="preventFormSubmit(event)">
+                  <input type="text" id="tagInput" placeholder="Add a tag" autocomplete="off">
                   <ul class="dropdown-menu">
                     <li>Medical</li>
                     <li>Education</li>
@@ -94,7 +89,7 @@
               
               
               <div class="form-group">
-                <input type="button" value="Complete" class="btn btn-primary submit-button" onclick="submitForm()">
+                <input type="submit" value="Submit" class="btn btn-primary submit-button">
 
               </div>
             </div>

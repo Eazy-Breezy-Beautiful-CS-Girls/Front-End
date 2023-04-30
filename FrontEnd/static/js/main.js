@@ -670,7 +670,7 @@ function showPreview(event, clear ){
 
   function pictureChange()
     {
-    document.getElementById('file-ip-1-preview').src="static/images/Solid_white.png";
+    document.getElementById('file-ip-1-preview').src="static/images/Flood.jpg";
   }
 
   document.addEventListener('DOMContentLoaded', function() {
