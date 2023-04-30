@@ -712,5 +712,35 @@ function showPreview(event, clear ){
 	}
   }
   
+  function clearUploads() {
+	document.getElementById('dragDrop').value = '';
+	document.getElementById('file-ip-1-preview').src = '';
+  }
+  function showPreview(event, index) {
+	const input = event.target;
+	const allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+	if (input.files && input.files[0]) {
+	  const fileType = input.files[0].type;
+
+	  if (!allowedFileTypes.includes(fileType)) {
+		alert('That file type is not supported.');
+		input.value = '';
+		return;
+	  }
+
+	  const reader = new FileReader();
+	  reader.onload = function(e) {
+		document.getElementById('file-ip-1-preview').src = e.target.result;
+	  }
+	  reader.readAsDataURL(input.files[0]);
+	}
+  }
+
+  function preventFormSubmit(event) {
+	if (event.key === "Enter") {
+	  event.preventDefault();
+	}
+  }
 
 

@@ -28,21 +28,13 @@
           <div class="col-md-6">
               <div class="image-carousel owl-carousel" id="imageCarousel">
                 <!-- Images will be appended here by JavaScript -->
-              </div>
-            
+              </div>      
             <div class="form-group">
               <div>
-
                 <span class="drop-zone__prompt" id="myInput">Drop File Here or Click to Upload</span>
                 <br>
-                
-                
-                <input type="file" multiple name="myFile" class="drop-zone__input" id="dragDrop" onchange="showPreview(event,0);">
-               
+                <input type="file" multiple name="myFile" class="drop-zone__input" id="dragDrop" onchange="showPreview(event,0);" multiple accept="image/jpeg,image/png,image/gif" required>
                 <button style="margin-top: 15px;" onclick="document.getElementById('dragDrop').value = '', pictureChange() ">Clear Uploads</button>
-                
-               
-              
               </div>
               <br>
               <br>
@@ -57,26 +49,26 @@
               <h3> Your Fundraiser</h3>
 
               <div class="form-group">
-                <input type="file" name="Picture" id="imageInput" style="display:none;" onchange="validateImage(this);" multiple>
+                <input type="file" name="Picture" id="imageInput" style="display:none;" onchange="validateImage(this);"  multiple accept="image/jpeg,image/png,image/gif" required>
               </div>
               
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Title" name="title" required>
+                <input type="text" class="form-control" placeholder="Title" name="title" required onkeydown="preventFormSubmit(event)">
               </div>
               
               <div class="form-group">
-                <input type="number" class="form-control" placeholder="$ Goal amount" name="goal" required>
+                <input type="number" class="form-control" placeholder="$ Goal amount" name="goal" required onkeydown="preventFormSubmit(event)">
               </div>
               <div class="form-group">
                 <textarea class="form-control-label-desc" placeholder="Description" name="description" rows="1" required></textarea>
               </div>
               <h6 class="m-r-top" >End date</h6>
               <div class="form-group">
-                <input type="date" placeholder="End date" class="form-control" name="date" id="endDate" min="{{ min_date }}" required>
+                <input type="date" placeholder="End date" class="form-control" name="date" id="endDate" min="{{ min_date }}" max="9999-12-31" required onkeydown="preventFormSubmit(event)">
               </div>                  
               <div class="tags-input">
                 <div class="dropdown">
-                  <input type="text" id="tagInput" placeholder="Add a tag" autocomplete="off">
+                  <input type="text" id="tagInput" placeholder="Add a tag" autocomplete="off" onkeydown="preventFormSubmit(event)">
                   <ul class="dropdown-menu">
                     <li>Medical</li>
                     <li>Education</li>
