@@ -683,4 +683,3 @@ function showPreview(event, clear ){
 	}
   });
   
-  

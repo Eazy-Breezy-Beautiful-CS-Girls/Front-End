@@ -63,7 +63,7 @@ def form():
     elif request.method == 'POST':
         title = request.form.get('title')
         description = request.form.get('description')
-        goal = int(request.form.get('goal'))
+        goal = int(request.form.get('goal').replace(',',''))
         user_id = g.user[0]
         end_date = request.form.get('date')
         start_date = datetime.datetime.now()
