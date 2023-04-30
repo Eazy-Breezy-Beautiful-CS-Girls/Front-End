@@ -23,12 +23,14 @@
   {% endfor %}
   </div>
 </div>
-<div class="site-section" style="background-color: white;">
+<div class="site-section" style="background-color: #EEEEEE;">
   <div class="container">
-     <div class="row mb-5 align-items-st" style="justify-content: center;  background: #EEEEEE; border: 5px solid #009578; padding-top: 25px;">
-      <div class="col-md-7">
+     <div class="row mb-5 align-items-st" style="justify-content: center; background: white; border: 3px solid #009578; padding-top: 25px;">
+      <center>
+        <div class="col-md-7">
+        
         <div class="heading-20219">
-          <h2 class="title mb-4">{{ fund[0] }}</h2>
+          <h2 class="title mb-4 text-cursive" >{{ fund[0] }}</h2>
           <div class="tags-container">
             {% for tag in fund[7].split(',') %}
               <span class="tag">{{ tag }}</span>
@@ -36,19 +38,20 @@
           </div>
           
           
-          <p>{{ fund[3] }}</p>
+          <p >{{ fund[3] }}</p>
         </div>
         <p> End date: {{ fund[2] }}</p>
         <p> Funds: {{ fund[5] }} / {{ fund[4] }} </p>
-      </div>
+       </div> 
+      </center>
       <div class="col-md-7">
         <div class="cause shadow-sm">
           <form method="POST">
             <div class="form-group">
-                <input type="number" class="form-control" placeholder="Your donation amount" name="amount">
+                <input type="number" class="form-control inputFeild" placeholder="Your donation amount" name="amount">
             </div>
             <div class="form-group">
-              <textarea type="text" class="form-control" placeholder="Comment (optional)" name="comment"></textarea>
+              <textarea type="text" class="form-control inputFeild" placeholder="Comment (optional)" name="comment"></textarea>
             </div>
             <div class="card-details">
               <h3 class="text-cursive mb-4">Credit Card Details</h3>
@@ -57,27 +60,27 @@
                   <div class="inner-addon right-addon">
                   <label for="card-holder">Card Holder</label>
                   <i class="far fa-user"></i>
-                  <input id="card-holder" type="text" class="form-control" placeholder="Name">
+                  <input id="card-holder" type="text" class="form-control inputFeild" placeholder="Name">
                   </div>	
                 </div>
                 <div class="form-group col-sm-5">
                   <label for="">Expiration Date</label>
                   <div class="input-group expiration-date">
-                    <input type="text" class="form-control" placeholder="MM" maxlength="2" minlength="2" pattern="[0-9]{2}">
-                    <span class="date-separator">/</span>
-                    <input type="text" class="form-control" placeholder="YY" maxlength="2" minlength="2" pattern="[0-9]{2}">
+                    <input type="text" class="form-control inputFeild" placeholder="MM" maxlength="2" minlength="2" pattern="[0-9]{2}">
+                    <span class="date-separator"> / </span>
+                    <input type="text" class="form-control inputFeild" placeholder="YY" maxlength="2" minlength="2" pattern="[0-9]{2}">
                   </div>
                 </div>
                 <div class="form-group col-sm-8">
-                  <div class="inner-addon right-addon">
+                  <div class="inner-addon right-addon ">
                   <label for="card-number">Card Number</label>
                   <i class="far fa-credit-card"></i>
-                  <input id="card-number" type="text" class="form-control" placeholder="Card Number" maxlength="16" minlength="16" pattern="^(?:[0-9]{16})$">
+                  <input id="card-number" type="text" class="form-control inputFeild" placeholder="Card Number" maxlength="16" minlength="16" pattern="^(?:[0-9]{16})$">
                   </div>	
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="cvc">CVC</label>
-                  <input id="cvc" type="text" class="form-control" placeholder="CVC" maxlength="3" minlength="3" pattern="[0-9]{3}">
+                  <input id="cvc" type="text" class="form-control inputFeild" placeholder="CVC" maxlength="3" minlength="3" pattern="[0-9]{3}">
                 </div>
                 <div class="form-group col-sm-12">
                   <input type="submit" class="btn btn-primary btn-block">
@@ -92,11 +95,11 @@
       <h1> Previous Donors  </h1>
       {% for comment in comments %}
 
-      <div class="container" style="border-left: 5px solid #009578; background: #EEEEEE; margin: 15px; ">
+      <div class="container" style="border-left: 5px solid #009578; background: white; margin: 15px; ">
       <div style="padding: 25px;">
         <div class="row" >
           <h3 style="text-decoration: none; border-bottom:2px dotted; color: #009578;">Donor: {{comment[0]}}</h3>
-        </div>
+        </div> 
         <div class="row">
           <p> &emsp;&emsp;Donation Amount: {{comment[1]}}</p>    
         </div>
