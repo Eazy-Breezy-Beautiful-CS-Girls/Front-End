@@ -27,7 +27,7 @@
               <div>
                 <span class="drop-zone__prompt" id="myInput">Drop File Here or Click to Upload</span>
                 <br>
-                <input type="file" multiple name="myFile" class="drop-zone__input" id="dragDrop" onchange="showPreview(event,0);" multiple accept="image/jpeg,image/png,image/gif">
+                <input type="file" multiple name="myFile" class="drop-zone__input" id="dragDrop" onchange="showPreview(event,0);" accept="image/jpeg,image/png,image/gif" required>
                 <button class="btn btn-primary submit-button" style="margin-top: 15px;" onclick="document.getElementById('dragDrop').value = '', pictureChange() ">Clear Uploads</button>
               </div>
               <br>
