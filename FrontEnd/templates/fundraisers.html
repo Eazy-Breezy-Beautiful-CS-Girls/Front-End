@@ -36,14 +36,10 @@
           {% set number = ((fund[5]/fund[4])*100)|int %}
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="justify-content: space-between;">
+        <span class="caption">{{ number }}% complete</span>
+        <p> Funds: ${{ fund[5] }} / ${{ fund[4] }} </p>
         <div class="custom-progress-wrap" style="width: 100%; margin-bottom: 25px;">
-          <div class="col-md-5">
-            <span class="caption">{{ number }}% complete</span>
-          </div>
-          <div class="col-md-5">
-            <p> Funds: ${{ fund[5] }} / ${{ fund[4] }} </p>
-          </div>
           <div class="custom-progress-inner">
             <div class="custom-progress" style="width: 100%; height: 7px; background-color:#c4c4c4; position:static; z-index:-1;">
               <div class="custom-progress bg-danger" style="width: {{ number }}%; height: 7px; position:relative;"></div>
@@ -66,7 +62,7 @@
     <div class="heading-20219">
       <h1 class="title mb-4 text-cursive" >Donate Now</h1>
     </div> 
-    <div class="row mb-5 align-items-st" style="justify-content: center; background: #EEEEEE; border: 3px solid #009578; padding-top: 25px;">
+    <div class="row mb-5 align-items-st" style="justify-content: center; background: #EEEEEE; border: 3px solid #009578; padding-top: 50px;">
       <div class="col-md-7">
         <div class="cause shadow-sm">
           <form method="POST">
