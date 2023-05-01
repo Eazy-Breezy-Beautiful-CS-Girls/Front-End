@@ -1,5 +1,7 @@
 # Front-End
 
+Welcome to the Easy Breezy Money web app!
+
 1. 
 ```powershell
 pip install -r "FrontEnd/requirements.txt"
