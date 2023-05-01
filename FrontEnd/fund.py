@@ -41,6 +41,9 @@ def fundraisers(fund_name):
         if g.user:
             get_db().cursor().execute('INSERT INTO Donations (FundName, UserID, DonoAmount, DonoTime, DonoComment) VALUES (%s,%s,%s,%s,%s)',(title,g.user,amount,datetime.datetime.now(),comment))
             get_db().commit()
+        else:
+            get_db().cursor().execute('INSERT INTO Donations (FundName, UserID, DonoAmount, DonoTime, DonoComment) VALUES (%s,%s,%s,%s,%s)',(title,'Anonymise',amount,datetime.datetime.now(),comment))
+            get_db().commit()
         return redirect(url_for('index'))
     with get_db().cursor() as cursor:
         cursor.execute('SELECT * FROM Funds WHERE FundName = %s',(fund_name))
