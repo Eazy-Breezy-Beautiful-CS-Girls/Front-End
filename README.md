@@ -18,5 +18,11 @@ while you are in the outer Front-End folder
 ```powershell
 flask --app FrontEnd run --debug
 ```
+Note: please have the required dependencies installed in order to run the program:
+'''flask
+pymysql
+pytest
+coverage
+'''
 
 5. this will run a local server that will show a development version and just click the link that looks like an ip that gets generated
