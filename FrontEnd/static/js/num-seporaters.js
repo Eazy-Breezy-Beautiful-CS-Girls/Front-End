@@ -17,7 +17,7 @@ function updateTextView(_obj){
     return Number(out.join(''));
   }
   $(document).ready(function(){
-    $('input[type=text][id=goal]').on('keyup',function(){
+    $('input[type=text][id=goal], input[type="text"][id="donation"]').on('keyup',function(){
       updateTextView($(this));
     });
   });
