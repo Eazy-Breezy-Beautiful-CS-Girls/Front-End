@@ -5,7 +5,7 @@ from flask import g
 def get_db():
     if "db" not in g:
         conn = pymysql.connect(
-        host= 'database-2.cjv1pfdwijy3.us-east-2.rds.amazonaws.com', 
+        host= 'database-1.ctvfyumkix2j.us-east-2.rds.amazonaws.com', 
         port = 3306,
         user = 'admin', 
         password = 'ezbreezy',

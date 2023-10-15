@@ -30,7 +30,7 @@
       <h1 class="title mb-4 text-cursive" >{{ fund[0] }}</h1>
       <div class="row">
         <div class="tags-container" style="display:flex;">
-          {% for tag in fund[7].split(',') %}
+          {% for tag in fund[6].split(',') %}
             <span class="tag">{{ tag }}</span>
           {% endfor %}
           {% set number = ((fund[5]/fund[4])*100)|int %}
@@ -120,7 +120,7 @@
           <h3 style="text-decoration: none; border-bottom:2px dotted; color: #009578;">Donor: {{comment[0]}}</h3>
         </div> 
         <div class="row">
-          <p> &emsp;&emsp;Donation Amount: {{comment[1]}}</p>    
+          <p> &emsp;&emsp;Donation Amount: &dollar;{{comment[1]}}</p>    
         </div>
         
         
